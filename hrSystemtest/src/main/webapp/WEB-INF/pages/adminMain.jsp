@@ -17,7 +17,10 @@
 </head>
 <body>
     <div>欢迎管理员&nbsp;${sessionScope.user}&nbsp;登录!</div>
-    <a href="#">查看招聘信息</a>
+    <a href="recruitController/showRecruit">招聘信息管理</a>
+    <a href="resumeController/showUnReadResume">未读简历</a>
+    <a href="resumeController/showReadedResume">已读简历</a>
+    <a href="">员工管理</a>
 </body>
 </html>
 

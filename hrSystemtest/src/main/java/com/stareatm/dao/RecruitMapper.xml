@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.stareatm.dao.RecruitMapper">
+    <insert id="addRecruit">
+        INSERT INTO T_RECRUIT(RC_JOB,RC_COMPANY,RC_SAL,RC_LOCATION,RC_PROPERTY,RC_SCALE,RC_EXPTIME,RC_EDUBG,RC_SEX,RC_MORE)
+        VALUES (#{rc_job},#{rc_company},#{rc_sal},#{rc_location},#{rc_property},#{rc_scale},#{rc_expTime},#{rc_eduBG},#{rc_sex},#{rc_more})
+    </insert>
+    <update id="updateRecruit">
+        UPDATE T_RECRUIT SET RC_JOB=#{rc_job},RC_COMPANY=#{rc_company},RC_SAL=#{rc_sal},rc_location=#{rc_location},rc_property=#{rc_property},
+                rc_scale=#{rc_scale},rc_expTime=#{rc_expTime},rc_eduBG=#{rc_eduBG},rc_sex=#{rc_sex},rc_more=#{rc_more}
+        WHERE rc_id=#{rc_id}
+    </update>
+    <delete id="deleteRecruit">
+        DELETE FROM T_RECRUIT where RC_ID=#{rc_id}
+    </delete>
+    <select id="getAllRecruit" resultType="com.stareatm.model.Recruit">
+        SELECT * FROM T_RECRUIT
+    </select>
+</mapper>

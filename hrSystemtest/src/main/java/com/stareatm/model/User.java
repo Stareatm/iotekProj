@@ -10,7 +10,7 @@ public class User implements Serializable{
     private int u_id;
     private String u_name;
     private String u_pass;
-    private int u_type;//0表示普通用户,1表示管理员
+    private int u_type;//0表示普通用户,1表示员工,2表示管理员
 
     public User(int u_id, String u_name, String u_pass, int u_type) {
         this.u_id = u_id;

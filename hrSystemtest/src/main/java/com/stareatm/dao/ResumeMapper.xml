@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.stareatm.dao.ResumeMapper">
+    <insert id="addResume">
+        INSERT INTO T_RESUME(U_ID,RS_NAME,RS_SEX,RS_IDNUMBER,RS_BIRTHDAY,RS_RESIDENCE,RS_ADDR,RS_EXPTIME,RS_PHONE,
+            RS_EMAIL,RS_DESIREDPOSITION,RS_DESIREDLOCATION,RS_EXPECTEDSAL,RS_CAREEREXP,RS_STATUS)
+        VALUES (#{user.u_id},#{rs_name},#{rs_sex},#{rs_IDNumber},#{rs_birthday},#{rs_residence},#{rs_addr},#{rs_expTime},
+        #{rs_phone},#{rs_email},#{rs_desiredPosition},#{rs_desiredLocation},#{rs_expectedSal},#{rs_careerExp},#{rs_status})
+    </insert>
+
+    <update id="updateResume">
+        UPDATE T_RESUME SET RS_NAME=#{rs_name},RS_SEX=#{rs_sex},RS_IDNUMBER=#{rs_IDNumber},RS_BIRTHDAY=#{rs_birthday},
+            RS_RESIDENCE=#{rs_residence},RS_ADDR=#{rs_addr},RS_EXPTIME=#{rs_expTime},RS_PHONE=#{rs_phone},RS_EMAIL=#{rs_email},
+            RS_DESIREDPOSITION=#{rs_desiredPosition},RS_DESIREDLOCATION=#{rs_desiredLocation},RS_EXPECTEDSAL=#{rs_expectedSal},
+            RS_CAREEREXP=#{rs_careerExp},RS_STATUS=#{rs_status}
+        WHERE RS_ID=#{rs_id}
+    </update>
+
+    <delete id="deleteResume">
+        DELETE FROM T_RESUME WHERE RS_ID=#{rs_id}
+    </delete>
+
+    <select id="getAllResumeByUser" resultMap="Resume_User">
+        SELECT rs.*,U_NAME,U_PASS,U_TYPE from T_RESUME rs,T_USER u
+        WHERE rs.U_ID=u.U_ID
+        AND rs.U_ID=#{u_id}
+    </select>
+
+    <select id="getResumeByRs_id" resultMap="Resume_User">
+        SELECT rs.*,U_NAME,U_PASS,U_TYPE from T_RESUME rs,T_USER u
+        WHERE rs.U_ID=u.U_ID
+        AND rs.RS_ID=#{rs_id}
+    </select>
+
+    <select id="getAllResumeByRs_status" resultMap="Resume_User">
+         SELECT rs.*,U_NAME,U_PASS,U_TYPE from T_RESUME rs,T_USER u
+        WHERE rs.U_ID=u.U_ID
+        AND rs.RS_STATUS=#{rs_status}
+    </select>
+
+    <resultMap id="Resume_User" type="Resume">
+        <id property="rs_id" column="RS_ID"/>
+        <result property="rs_sex" column="RS_SEX"/>
+        <result property="rs_IDNumber" column="RS_IDNUMBER"/>
+        <result property="rs_birthday" column="RS_BIRTHDAY"/>
+        <result property="rs_residence" column="RS_RESIDENCE"/>
+        <result property="rs_addr" column="RS_ADDR"/>
+        <result property="rs_expTime" column="RS_EXPTIME"/>
+        <result property="rs_phone" column="RS_PHONE"/>
+        <result property="rs_email" column="RS_EMAIL"/>
+        <result property="rs_desiredPosition" column="RS_DESIREDPOSITION"/>
+        <result property="rs_desiredLocation" column="RS_DESIREDLOCATION"/>
+        <result property="rs_expectedSal" column="RS_EXPECTEDSAL"/>
+        <result property="rs_careerExp" column="RS_CAREEREXP"/>
+        <result property="rs_status" column="RS_STATUS"/>
+        <association property="user" javaType="User">
+            <id property="u_id" column="U_ID"/>
+            <result property="u_name" column="U_NAME"/>
+            <result property="u_pass" column="U_PASS"/>
+            <result property="u_type" column="U_TYPE"/>
+        </association>
+    </resultMap>
+</mapper>
