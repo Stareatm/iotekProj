@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: 刘
@@ -37,6 +38,7 @@
                 <th>期望工作地点</th>
                 <th>期望薪资</th>
                 <th>工作经历</th>
+                <th>面试邀请</th>
             </tr>
             <c:forEach items="${resumeList}" var="resume">
                 <tr>
@@ -55,6 +57,22 @@
                     <td>${resume.rs_desiredLocation}</td>
                     <td>${resume.rs_expectedSal}元/月</td>
                     <td><textarea name="rs_careerExp" readonly="readonly">${resume.rs_careerExp}</textarea></td>
+                    <td>
+                        <c:if test="${null!=resume.interview}">
+                            <c:if test="${resume.interview.i_status==0}">
+                                已发送
+                            </c:if>
+                            <c:if test="${resume.interview.i_status==1}">
+                                已接受面试
+                            </c:if>
+                        </c:if>
+                        <c:if test="${null==resume.interview}">
+                            <form action="interviewController/toAddInterview">
+                                <input type="hidden" name="rs_id" value="${resume.rs_id}">
+                                <input type="submit" value="发送邀请">
+                            </form>
+                        </c:if>
+                    </td>
                 </tr>
             </c:forEach>
         </table>

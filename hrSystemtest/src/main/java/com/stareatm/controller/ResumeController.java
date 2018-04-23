@@ -1,7 +1,9 @@
 package com.stareatm.controller;
 
+import com.stareatm.model.Interview;
 import com.stareatm.model.Resume;
 import com.stareatm.model.User;
+import com.stareatm.service.InterviewService;
 import com.stareatm.service.ResumeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +21,8 @@ import java.util.List;
 public class ResumeController {
     @Resource
     private ResumeService resumeService;
+    @Resource
+    private InterviewService interviewService;
     @RequestMapping("showResume")
     public String showResume(Model model,HttpSession session)throws Exception{
         User user= (User) session.getAttribute("user");
@@ -68,8 +72,16 @@ public class ResumeController {
     @RequestMapping("showReadedResume")
     public String showReadedResume(Model model)throws Exception{
         Resume resume=new Resume();
-        resume.setRs_status(1);//未读
-        List<Resume> resumeList=resumeService.getAllResumeByRs_status(resume);
+        resume.setRs_status(1);//已读
+        List<Resume> resumeList=resumeService.getAllResumeByRs_status(resume);//查询已读简历
+        for(int i=0;i<resumeList.size();i++){
+            Resume resume1=resumeService.getResume_Interview(resumeList.get(i));//查询是否有对应的邀请
+            if(null!=resume1){
+                resumeList.get(i).setInterview(resume1.getInterview());//将查询邀请结果添加上去
+            }else {
+                resumeList.get(i).setInterview(null);
+            }
+        }
         model.addAttribute("resumeList",resumeList);
         return "showReadedResume";
     }

@@ -45,4 +45,9 @@ public class ResumeServiceImpl implements ResumeService {
     public List<Resume> getAllResumeByRs_status(Resume resume) {
         return resumeMapper.getAllResumeByRs_status(resume);
     }
+
+    @Override
+    public Resume getResume_Interview(Resume resume) {
+        return resumeMapper.getResume_Interview(resume);
+    }
 }

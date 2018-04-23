@@ -21,9 +21,10 @@ public class Resume implements Serializable {
     private String rs_desiredLocation;//期望工作地点
     private int rs_expectedSal;//期望薪资
     private String rs_careerExp;//工作经历
-    private int rs_status=-1;//-1表示未发送,0表示未读，1表示已读
+    private int rs_status=-1;//-1表示未发送,0表示未读，1表示已读,2表示已发送面试邀请
+    private Interview interview;
 
-    public Resume(int rs_id, User user, String rs_name, String rs_sex, String rs_IDNumber, String rs_birthday, String rs_residence, String rs_addr, String rs_expTime, String rs_phone, String rs_email, String rs_desiredPosition, String rs_desiredLocation, int rs_expectedSal, String rs_careerExp, int rs_status) {
+    public Resume(int rs_id, User user, String rs_name, String rs_sex, String rs_IDNumber, String rs_birthday, String rs_residence, String rs_addr, String rs_expTime, String rs_phone, String rs_email, String rs_desiredPosition, String rs_desiredLocation, int rs_expectedSal, String rs_careerExp, int rs_status, Interview interview) {
         this.rs_id = rs_id;
         this.user = user;
         this.rs_name = rs_name;
@@ -40,6 +41,7 @@ public class Resume implements Serializable {
         this.rs_expectedSal = rs_expectedSal;
         this.rs_careerExp = rs_careerExp;
         this.rs_status = rs_status;
+        this.interview = interview;
     }
 
     public Resume(int rs_id) {
@@ -177,6 +179,14 @@ public class Resume implements Serializable {
 
     public void setRs_status(int rs_status) {
         this.rs_status = rs_status;
+    }
+
+    public Interview getInterview() {
+        return interview;
+    }
+
+    public void setInterview(Interview interview) {
+        this.interview = interview;
     }
 
     @Override

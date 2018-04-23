@@ -20,6 +20,8 @@
     <a href="recruitController/showRecruit">招聘信息管理</a>
     <a href="resumeController/showUnReadResume">未读简历</a>
     <a href="resumeController/showReadedResume">已读简历</a>
+    <a href="interviewController/showSentInterview">未确认的面试邀请</a>
+    <a href="interviewController/showConfirmedInterview">已确认的面试</a>
     <a href="">员工管理</a>
 </body>
 </html>

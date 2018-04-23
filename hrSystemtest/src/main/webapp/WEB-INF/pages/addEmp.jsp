@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: 刘
-  Date: 2018/4/20
-  Time: 16:42
+  Date: 2018/4/23
+  Time: 16:31
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -16,10 +16,16 @@
     <title></title>
 </head>
 <body>
-    <div>欢迎用户&nbsp;${sessionScope.user}&nbsp;登录!</div>
-    <a href="recruitController/showRecruit">查看招聘信息</a>
-    <a href="resumeController/showResume">简历管理</a>
-    <a href="interviewController/showReceivedInterview">查看面试邀请</a>
+    <table border="1" cellpadding="0" cellspacing="0">
+        <tr>
+            <th>员工姓名</th>
+            <th>员工性别</th>
+            <th>身份证号</th>
+            <th>年龄</th>
+            <th>地址</th>
+            <th></th>
+        </tr>
+    </table>
 </body>
 </html>
 

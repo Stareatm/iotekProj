@@ -13,8 +13,7 @@ public interface ResumeService {
     boolean updateResume(Resume resume);
     boolean deleteResume(Resume resume);
     boolean addResume(Resume resume);
-
     Resume getResumeByRs_id(Resume resume);
-
     List<Resume> getAllResumeByRs_status(Resume resume);
+    Resume getResume_Interview(Resume resume);
 }

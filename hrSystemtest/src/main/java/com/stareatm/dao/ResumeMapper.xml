@@ -33,13 +33,20 @@
     </select>
 
     <select id="getAllResumeByRs_status" resultMap="Resume_User">
-         SELECT rs.*,U_NAME,U_PASS,U_TYPE from T_RESUME rs,T_USER u
+        SELECT rs.*,U_NAME,U_PASS,U_TYPE from T_RESUME rs,T_USER u
         WHERE rs.U_ID=u.U_ID
         AND rs.RS_STATUS=#{rs_status}
     </select>
 
+    <select id="getResume_Interview" resultMap="Resume_Interview">
+        SELECT rs.*,i.I_ID,i.I_JOB,i.I_TIME,i.I_ADDR,i.I_STATUS from T_RESUME rs,T_INTERVIEW i
+        WHERE rs.RS_ID=i.RS_ID
+        AND rs.RS_ID=#{rs_id}
+    </select>
+
     <resultMap id="Resume_User" type="Resume">
         <id property="rs_id" column="RS_ID"/>
+        <result property="rs_name" column="RS_NAME"/>
         <result property="rs_sex" column="RS_SEX"/>
         <result property="rs_IDNumber" column="RS_IDNUMBER"/>
         <result property="rs_birthday" column="RS_BIRTHDAY"/>
@@ -60,4 +67,29 @@
             <result property="u_type" column="U_TYPE"/>
         </association>
     </resultMap>
+
+    <resultMap id="Resume_Interview" type="Resume">
+        <id property="rs_id" column="RS_ID"/>
+        <result property="rs_name" column="RS_NAME"/>
+        <result property="rs_sex" column="RS_SEX"/>
+        <result property="rs_IDNumber" column="RS_IDNUMBER"/>
+        <result property="rs_birthday" column="RS_BIRTHDAY"/>
+        <result property="rs_residence" column="RS_RESIDENCE"/>
+        <result property="rs_addr" column="RS_ADDR"/>
+        <result property="rs_expTime" column="RS_EXPTIME"/>
+        <result property="rs_phone" column="RS_PHONE"/>
+        <result property="rs_email" column="RS_EMAIL"/>
+        <result property="rs_desiredPosition" column="RS_DESIREDPOSITION"/>
+        <result property="rs_desiredLocation" column="RS_DESIREDLOCATION"/>
+        <result property="rs_expectedSal" column="RS_EXPECTEDSAL"/>
+        <result property="rs_careerExp" column="RS_CAREEREXP"/>
+        <result property="rs_status" column="RS_STATUS"/>
+        <association property="interview" javaType="Interview">
+            <id property="i_id" column="I_ID"/>
+            <result property="i_time" column="I_TIME"/>
+            <result property="i_addr" column="I_ADDR"/>
+            <result property="i_status" column="I_STATUS"/>
+        </association>
+    </resultMap>
+
 </mapper>
