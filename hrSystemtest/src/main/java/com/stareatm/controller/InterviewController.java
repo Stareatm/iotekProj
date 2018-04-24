@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,9 +38,10 @@ public class InterviewController {
         return "addInterview";
     }
     @RequestMapping("addInterview")
-    public String addInterview(Resume resume,Job job,Interview interview)throws Exception{
+    public String addInterview(Resume resume,Job job,String i_time,Interview interview)throws Exception{
         Resume resume1=resumeService.getResumeByRs_id(resume);//查出简历及用户信息
         Job job1=jobService.getJobByJ_id(job);
+        interview.setI_time(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(i_time));
         interview.setI_status(0);
         interviewService.addInterview(interview);//发送面试成功
         return "adminMain";

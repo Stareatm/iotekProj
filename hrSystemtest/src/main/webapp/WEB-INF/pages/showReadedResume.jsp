@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: 刘
@@ -47,7 +48,9 @@
                             ${resume.rs_sex}
                     </td>
                     <td>${resume.rs_IDNumber}</td>
-                    <td>${resume.rs_birthday}</td>
+                    <td>
+                        <fmt:formatDate value="${resume.rs_birthday}" pattern="YYYY-MM-DD HH24:MM:SS"/>
+                    </td>
                     <td>${resume.rs_residence}</td>
                     <td>${resume.rs_addr}</td>
                     <td>${resume.rs_expTime}年</td>

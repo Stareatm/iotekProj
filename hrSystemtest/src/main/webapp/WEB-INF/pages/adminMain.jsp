@@ -22,6 +22,8 @@
     <a href="resumeController/showReadedResume">已读简历</a>
     <a href="interviewController/showSentInterview">未确认的面试邀请</a>
     <a href="interviewController/showConfirmedInterview">已确认的面试</a>
+    <a href="deptController/showDept">部门管理</a>
+    <a href="deptController/toPage?choose='addDept'">添加部门管理</a>
     <a href="">员工管理</a>
 </body>
 </html>

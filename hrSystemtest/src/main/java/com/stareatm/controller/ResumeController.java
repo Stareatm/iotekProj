@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -31,7 +32,8 @@ public class ResumeController {
         return "showResume";
     }
     @RequestMapping("updateResume")
-    public String updateResume(Resume resume,Model model,HttpSession session)throws Exception{
+    public String updateResume(Resume resume,Model model,String rs_birthday,HttpSession session)throws Exception{
+        resume.setRs_birthday(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(rs_birthday));
         resumeService.updateResume(resume);
         return showResume(model,session);
     }
@@ -41,9 +43,10 @@ public class ResumeController {
         return showResume(model,session);
     }
     @RequestMapping("addResume")
-    public String addResume(Resume resume,Model model,HttpSession session)throws Exception{
+    public String addResume(Resume resume,Model model,String rs_birthday,HttpSession session)throws Exception{
         User user= (User) session.getAttribute("user");
         resume.setUser(user);
+        resume.setRs_birthday(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(rs_birthday));
         resumeService.addResume(resume);
         return showResume(model,session);
     }

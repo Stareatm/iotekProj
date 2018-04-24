@@ -1,7 +1,7 @@
 package com.stareatm.service;
 
+import com.stareatm.model.Dept;
 import com.stareatm.model.Job;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -11,4 +11,6 @@ import java.util.List;
 public interface JobService {
     List<Job> getAllJob();
     Job getJobByJ_id(Job job);
+    Job getJobByJ_nameD_name(Job job, Dept dept);
+    Job getJob_EmpByJ_id(Job job);
 }

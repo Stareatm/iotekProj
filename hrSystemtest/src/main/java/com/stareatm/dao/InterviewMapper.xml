@@ -12,7 +12,8 @@
     </update>
 
     <select id="getInterviewByRs_id" resultMap="Interview_Resume">
-        SELECT rs.*,I_ID,I_TIME,I_ADDR,I_STATUS from T_INTERVIEW i,T_RESUME rs
+        SELECT rs.*,I_ID,I_TIME,I_ADDR,I_STATUS
+        from T_INTERVIEW i,T_RESUME rs
         WHERE i.RS_ID=rs.RS_ID
         AND i.RS_ID=#{resume.rs_id}
     </select>

@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: 刘
@@ -58,7 +59,11 @@
                             </select>
                         </td>
                         <td><input name="rs_IDNumber" type="text" value="${resume.rs_IDNumber}"></td>
-                        <td><input type="date" name="rs_birthday" value="${resume.rs_birthday}"></td>
+                        <td>
+                            <fmt:formatDate value="${resume.rs_birthday}" pattern="YYYY-MM-DD HH24:MM:SS" var="birthday">
+                                <input type="date" name="rs_birthday" value="${birthday}">
+                            </fmt:formatDate>
+                        </td>
                         <td><input type="text" name="rs_residence" value="${resume.rs_residence}"></td>
                         <td><input type="text" name="addr" value="${resume.rs_addr}"></td>
                         <td><input type="number" name="rs_expTime" min="0" value="${resume.rs_expTime}">年</td>

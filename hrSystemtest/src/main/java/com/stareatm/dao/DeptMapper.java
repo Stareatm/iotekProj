@@ -1,5 +1,6 @@
 package com.stareatm.dao;
 
+import com.stareatm.model.Dept;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -9,5 +10,6 @@ import java.util.List;
  */
 @Repository
 public interface DeptMapper {
-
+    List<Dept> getAllDept();
+    Dept getDept_JobByD_name(Dept dept);
 }

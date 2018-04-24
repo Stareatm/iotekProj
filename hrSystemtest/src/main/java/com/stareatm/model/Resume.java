@@ -1,6 +1,7 @@
 package com.stareatm.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by 刘 on 2018/4/22.
@@ -11,7 +12,7 @@ public class Resume implements Serializable {
     private String rs_name;
     private String rs_sex;
     private String rs_IDNumber;
-    private String rs_birthday;
+    private Date rs_birthday;
     private String rs_residence;//户籍
     private String rs_addr;//住址
     private String rs_expTime;//工作年限
@@ -24,7 +25,7 @@ public class Resume implements Serializable {
     private int rs_status=-1;//-1表示未发送,0表示未读，1表示已读,2表示已发送面试邀请
     private Interview interview;
 
-    public Resume(int rs_id, User user, String rs_name, String rs_sex, String rs_IDNumber, String rs_birthday, String rs_residence, String rs_addr, String rs_expTime, String rs_phone, String rs_email, String rs_desiredPosition, String rs_desiredLocation, int rs_expectedSal, String rs_careerExp, int rs_status, Interview interview) {
+    public Resume(int rs_id, User user, String rs_name, String rs_sex, String rs_IDNumber, Date rs_birthday, String rs_residence, String rs_addr, String rs_expTime, String rs_phone, String rs_email, String rs_desiredPosition, String rs_desiredLocation, int rs_expectedSal, String rs_careerExp, int rs_status, Interview interview) {
         this.rs_id = rs_id;
         this.user = user;
         this.rs_name = rs_name;
@@ -93,11 +94,11 @@ public class Resume implements Serializable {
         this.rs_IDNumber = rs_IDNumber;
     }
 
-    public String getRs_birthday() {
+    public Date getRs_birthday() {
         return rs_birthday;
     }
 
-    public void setRs_birthday(String rs_birthday) {
+    public void setRs_birthday(Date rs_birthday) {
         this.rs_birthday = rs_birthday;
     }
 

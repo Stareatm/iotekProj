@@ -11,7 +11,19 @@
         SELECT j.J_ID,J_NAME,j.D_ID,d.D_NAME FROM T_JOB j,T_DEPT d
         WHERE j.D_ID=d.D_ID
         AND j.J_ID=#{j_id}
-        ORDER BY d.D_NAME
+    </select>
+
+    <select id="getJobByJ_nameD_name" resultMap="Job_Dept">
+        SELECT j.J_ID,J_NAME,j.D_ID,d.D_NAME FROM T_JOB j,T_DEPT d
+        WHERE j.D_ID=d.D_ID
+        AND j.J_NAME=#{j_name}
+        and d.d_name=#{d_name}
+    </select>
+    <select id="getJob_EmpByJ_id" resultMap="Job_Emp">
+        SELECT e.*,j.J_NAME
+        FROM T_EMP e,T_JOB j
+        WHERE e.J_ID=j.J_ID
+        AND j.J_ID=#{j_id}
     </select>
 
     <resultMap id="Job_Dept" type="Job">
@@ -21,5 +33,23 @@
             <id property="d_id" column="D_ID"/>
             <result property="d_name" column="D_NAME"/>
         </association>
+    </resultMap>
+
+    <resultMap id="Job_Emp" type="Job">
+        <id property="j_id" column="J_ID"/>
+        <result property="j_name" column="J_NAME"/>
+        <collection property="empList" ofType="Emp">
+            <id property="e_id" column="E_ID"/>
+            <result property="e_baseSal" column="E_BASESAL"/>
+            <result property="e_hireDate" column="E_HIREDATE"/>
+            <result property="e_status" column="E_STATUS"/>
+            <result property="e_name" column="E_NAME"/>
+            <result property="e_sex" column="E_SEX"/>
+            <result property="e_IDNumber" column="E_IDNUMBER"/>
+            <result property="e_phone" column="E_PHONE"/>
+            <result property="e_addr" column="E_ADDR"/>
+            <result property="e_birthday" column="E_BIRTHDAY"/>
+            <result property="e_email" column="E_EMAIL"/>
+        </collection>
     </resultMap>
 </mapper>

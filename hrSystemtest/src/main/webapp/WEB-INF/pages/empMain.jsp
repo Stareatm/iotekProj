@@ -17,7 +17,8 @@
 </head>
 <body>
     <div>欢迎员工&nbsp;${sessionScope.user}&nbsp;登录</div>
-    <a href="#">查看招聘信息</a>
+    <a href="recruitController/showRecruit">查看招聘信息</a>
+    <a href="empController/toPage?choose='updatePass'">修改密码</a>
 </body>
 </html>
 

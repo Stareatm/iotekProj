@@ -1,6 +1,7 @@
 package com.stareatm.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by 刘 on 2018/4/23.
@@ -8,12 +9,12 @@ import java.io.Serializable;
 public class Interview implements Serializable {
     private int i_id;
     private Resume resume;//发送给该简历的邀请表
-    private String i_time;
+    private Date i_time;
     private String i_addr;
     private int i_status;//0表示该邀请已发送游客已接收,1表示游客确认面试,2表示已入职
     private Job job;
 
-    public Interview(int i_id, Resume resume, String i_time, String i_addr, int i_status, Job job) {
+    public Interview(int i_id, Resume resume, Date i_time, String i_addr, int i_status, Job job) {
         this.i_id = i_id;
         this.resume = resume;
         this.i_time = i_time;
@@ -47,11 +48,11 @@ public class Interview implements Serializable {
         this.resume = resume;
     }
 
-    public String getI_time() {
+    public Date getI_time() {
         return i_time;
     }
 
-    public void setI_time(String i_time) {
+    public void setI_time(Date i_time) {
         this.i_time = i_time;
     }
 

@@ -39,13 +39,13 @@
                 <th>学历</th>
                 <th>性别</th>
                 <th>相关介绍</th>
-                <c:if test="${sessionScope.user.type==2}"><%--管理员--%>
+                <c:if test="${sessionScope.user.u_type==2}"><%--管理员--%>
                     <th>修改招聘信息</th>
                     <th>删除招聘信息</th>
                 </c:if>
             </tr>
 
-            <c:if test="${sessionScope.user.type!=2}"><%--非管理员--%>
+            <c:if test="${sessionScope.user.u_type!=2}"><%--非管理员--%>
                 <c:forEach items="${recruitList}" var="recruit">
                     <tr>
                         <td>${recruit.rc_job}</td>
@@ -62,7 +62,7 @@
                 </c:forEach>
             </c:if>
 
-            <c:if test="${sessionScope.user.type==2}"><%--管理员--%>
+            <c:if test="${sessionScope.user.u_type==2}"><%--管理员--%>
                 <c:forEach items="${recruitList}" var="recruit">
                     <<form action="recruitController/updateRecruit">
                         <tr>
@@ -145,14 +145,14 @@
         </table>
     </c:if>
 
-    <c:if test="${sessionScope.user.type==2}">
+    <c:if test="${sessionScope.user.u_type==2}">
         <a href="recruitController/toPage?choose='addRecruit'">添加招聘</a>
         <a href="recruitController/toPage?choose='adminMain'">返回主菜单</a>
     </c:if>
-    <c:if test="${sessionScope.user.type==1}">
+    <c:if test="${sessionScope.user.u_type==1}">
         <a href="recruitController/toPage?choose='empMain'">返回主菜单</a>
     </c:if>
-    <c:if test="${sessionScope.user.type==0}">
+    <c:if test="${sessionScope.user.u_type==0}">
         <a href="recruitController/toPage?choose='userMain'">返回主菜单</a>
     </c:if>
 

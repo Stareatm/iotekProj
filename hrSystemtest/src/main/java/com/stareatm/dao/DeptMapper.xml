@@ -1,4 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.stareatm.dao.DeptMapper">
+    <select id="getAllDept" resultType="Dept">
+        select D_ID,D_NAME from T_DEPT
+    </select>
+    <select id="getDept_JobByD_name" resultMap="Dept_Job">
+        select d.D_ID,d.D_NAME,j.J_ID,j.J_NAME
+        from T_DEPT d,T_JOB j
+        WHERE d.D_ID=j.D_ID
+        AND d.D_NAME=#{d_name}
+    </select>
+    <resultMap id="Dept_Job" type="Dept">
+        <id property="d_id" column="D_ID"/>
+        <result property="d_name" column="D_NAME"/>
+        <collection property="jobList" ofType="Job">
+            <id property="j_id" column="J_ID"/>
+            <result property="j_name" column="J_NAME"/>
+        </collection>
+    </resultMap>
 </mapper>

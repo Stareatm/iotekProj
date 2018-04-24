@@ -11,4 +11,6 @@ public interface UserService {
     User getUserByName(User user);
 
     boolean addUser(User user);
+
+    boolean updateUserPassByName(User user);
 }

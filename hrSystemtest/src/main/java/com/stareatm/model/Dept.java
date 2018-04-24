@@ -1,6 +1,7 @@
 package com.stareatm.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by 刘 on 2018/4/23.
@@ -8,10 +9,13 @@ import java.io.Serializable;
 public class Dept implements Serializable {
     private int d_id;
     private String d_name;
+    private List<Job> jobList;
 
-    public Dept(int d_id, String d_name) {
+
+    public Dept(int d_id, String d_name, List<Job> jobList) {
         this.d_id = d_id;
         this.d_name = d_name;
+        this.jobList = jobList;
     }
 
     public Dept(int d_id) {
@@ -37,6 +41,14 @@ public class Dept implements Serializable {
 
     public void setD_name(String d_name) {
         this.d_name = d_name;
+    }
+
+    public List<Job> getJobList() {
+        return jobList;
+    }
+
+    public void setJobList(List<Job> jobList) {
+        this.jobList = jobList;
     }
 
     @Override

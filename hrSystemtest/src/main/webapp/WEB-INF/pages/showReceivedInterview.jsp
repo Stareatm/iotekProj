@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: 刘
@@ -31,7 +32,9 @@
                 <td>${interview.resume.rs_name}</td>
                 <td>${interview.resume.rs_phone}</td>
                 <td>${interview.job.j_name}</td>
-                <td>${interview.i_time}</td>
+                <td>
+                    <fmt:formatDate value="${interview.i_time}" pattern="YYYY-MM-DD HH24:MM:SS"/>
+                </td>
                 <td>${interview.i_addr}</td>
                 <td>
                     <form action="interviewController/confirmInterview">
