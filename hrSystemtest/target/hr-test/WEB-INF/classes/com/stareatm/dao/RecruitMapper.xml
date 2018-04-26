@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.stareatm.dao.RecruitMapper">
+    <insert id="addRecruit">
+        INSERT INTO T_RECRUIT(J_NAME,RC_COMPANY,RC_SAL,RC_LOCATION,RC_PROPERTY,RC_SCALE,RC_EXPTIME,RC_EDUBG,RC_SEX,RC_MORE,D_NAME,RC_STATUS)
+        VALUES (#{j_name},#{rc_company},#{rc_sal},#{rc_location},#{rc_property},#{rc_scale},#{rc_expTime},#{rc_eduBG},#{rc_sex},#{rc_more},#{d_name},#{rc_status})
+    </insert>
+    <update id="updateRecruit">
+        UPDATE T_RECRUIT SET j_name=#{j_name},RC_COMPANY=#{rc_company},RC_SAL=#{rc_sal},RC_LOCATION=#{rc_location},RC_PROPERTY=#{rc_property},
+                RC_SCALE=#{rc_scale},RC_EXPTIME=#{rc_expTime},RC_EDUBG=#{rc_eduBG},RC_SEX=#{rc_sex},RC_MORE=#{rc_more},D_NAME=#{d_name},RC_STATUS=#{rc_status}
+        WHERE RC_ID=#{rc_id}
+    </update>
+    <delete id="deleteRecruit">
+        DELETE FROM T_RECRUIT where RC_ID=#{rc_id}
+    </delete>
+    <select id="getAllRecruit" resultType="com.stareatm.model.Recruit">
+        SELECT * FROM T_RECRUIT
+    </select>
+    <select id="getAllRecruitByRc_status" resultType="com.stareatm.model.Recruit">
+        SELECT * FROM T_RECRUIT WHERE RC_STATUS=#{rc_status}
+    </select>
+</mapper>

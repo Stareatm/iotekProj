@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.stareatm.dao.DeptMapper">
+    <insert id="addDept">
+        INSERT INTO T_DEPT(D_NAME) VALUES (#{d_name})
+    </insert>
+
+    <select id="getAllDept" resultType="Dept">
+        select D_ID,D_NAME from T_DEPT
+    </select>
+
+    <select id="getDept_JobByD_name" resultMap="Dept_Job">
+        select d.D_ID did,d.D_NAME dname,j.J_ID jid,j.J_NAME jname
+        from T_DEPT d,T_JOB j
+        WHERE d.D_ID=j.D_ID
+        AND d.D_NAME=#{d_name}
+    </select>
+
+    <select id="getDeptByD_name" resultType="com.stareatm.model.Dept">
+        select D_ID,D_NAME
+        from T_DEPT
+        WHERE D_NAME=#{d_name}
+    </select>
+
+    <resultMap id="Dept_Job" type="Dept">
+        <id property="d_id" column="did"/>
+        <result property="d_name" column="dname"/>
+        <collection property="jobList" ofType="Job">
+            <id property="j_id" column="jid"/>
+            <result property="j_name" column="jname"/>
+        </collection>
+    </resultMap>
+</mapper>

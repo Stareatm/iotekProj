@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.stareatm.dao.EmpMapper">
+    <insert id="addEmp">
+        INSERT INTO T_EMP (J_ID, E_BASESAL, E_HIREDATE, E_STATUS, E_NAME, E_SEX, E_IDNUMBER, E_PHONE, E_ADDR, E_BIRTHDAY, E_EMAIL,E_ACCOUNT,E_PASS)
+        VALUES(#{job.j_id},#{e_baseSal},#{e_hireDate},#{e_status},#{e_name},#{e_sex},#{e_IDNumber},#{e_phone},#{e_addr},#{e_birthday},#{e_email},#{e_account},#{e_pass})
+    </insert>
+
+    <update id="updateEmpPassByAccount">
+        UPDATE T_EMP SET E_PASS=#{e_pass} where e_id=#{e_id}
+    </update>
+
+    <select id="getEmp_JobByJ_ID" resultMap="Emp_Job">
+        SELECT e.*,j.J_NAME
+        FROM T_EMP e,T_JOB j
+        WHERE e.J_ID=j.J_ID
+        AND e.J_ID=#{job.j_id}
+    </select>
+
+    <select id="login" resultMap="Emp_Job">
+        SELECT e.*,j.J_NAME
+        FROM T_EMP e,T_JOB j
+        WHERE e.J_ID=j.J_ID
+        AND e.E_ACCOUNT=#{e_account}
+        AND e.e_pass=#{e_pass}
+    </select>
+
+    <select id="getEmpByE_account" resultType="com.stareatm.model.Emp">
+        SELECT * from T_EMP WHERE E_ACCOUNT=#{e_account}
+    </select>
+
+    <resultMap id="Emp_Job" type="Emp">
+        <id property="e_id" column="E_ID"/>
+        <result property="e_baseSal" column="E_BASESAL"/>
+        <result property="e_hireDate" column="E_HIREDATE"/>
+        <result property="e_status" column="E_STATUS"/>
+        <result property="e_name" column="E_NAME"/>
+        <result property="e_sex" column="E_SEX"/>
+        <result property="e_IDNumber" column="E_IDNUMBER"/>
+        <result property="e_phone" column="E_PHONE"/>
+        <result property="e_addr" column="E_ADDR"/>
+        <result property="e_birthday" column="E_BIRTHDAY"/>
+        <result property="e_email" column="E_EMAIL"/>
+        <result property="e_account" column="E_ACCOUNT"/>
+        <result property="e_pass" column="E_PASS"/>
+        <association property="job" javaType="Job">
+            <id property="j_id" column="J_ID"/>
+            <result property="j_name" column="J_NAME"/>
+        </association>
+    </resultMap>
+</mapper>
