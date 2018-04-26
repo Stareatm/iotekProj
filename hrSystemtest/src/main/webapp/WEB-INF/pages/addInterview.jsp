@@ -14,44 +14,77 @@
 <html>
 <head>
     <base href="<%=basePath%>"/>
-    <title></title>
+    <title>addInterview</title>
+    <script type="text/javascript" src="js/jquery-3.1.0.js"></script>
+    <script>
+        $(function () {
+            $("#d_name").change(function () {
+                $.ajax({
+                    type:"post",
+                    url:"empController/findJob",
+                    data:{"d_name":$("#d_name").val()},
+                    success:function(obj){/*obj是返回的jobList*/
+                        $("#j_name").empty();
+                        if (obj.length!=0) {
+                            for ( var i=0; i<obj.length; i++) {
+                                var j_name = obj[i].j_name;
+                                $("#j_name").append(
+                                    "<option value="+j_name+">"
+                                    + j_name + "</option>");
+                            }
+                        }else {
+                            alert("该部门没有对应岗位!");
+                        }
+                    }
+                })
+            })
+        })
+    </script>
 </head>
 <body>
     <table>
         <tr>
             <th>应聘者姓名</th>
             <th>应聘者手机号</th>
-            <th>应聘岗位</th>
+            <th>应聘的部门</th>
+            <th>应聘的职位</th>
             <th>面试时间</th>
             <th>面试地址</th>
             <th>发送邀请</th>
         </tr>
         <tr>
             <form action="interviewController/addInterview">
-                <td><input name="rs_name" type="text" readonly="readonly" value="${resume1.rs_name}"></td>
-                <td><input name="rs_phone" type="text" readonly="readonly" value="${resume1.rs_phone}"></td>
+                <td><input name="rs_name" type="text" readonly="readonly" value="${resume.rs_name}"></td>
+                <td><input name="rs_phone" type="text" readonly="readonly" value="${resume.rs_phone}"></td>
                 <td>
-                    <select name="j_name">
-                        <c:forEach items="${jobList}" var="job">
-                            <option value="${job.j_name}">
-                                <input type="hidden" name="j_id" value="${job.j_id}"><br>${job.j_name}
-                            </option>
+                    <select name="d_name" id="d_name">
+                        <c:forEach items="${deptList}" var="dept">
+                            <option value="${dept.d_name}">${dept.d_name}</option>
                         </c:forEach>
                     </select>
                 </td>
                 <td>
-                    <input name="i_time" type="date">
+                    <select name="j_name" id="j_name">
+                        <c:forEach items="${jobList}" var="job">
+                            <option value="${job.j_name}">${job.j_name}</option>
+                        </c:forEach>
+                    </select>
+                </td>
+                <td>
+                    <input name="iTime" type="datetime-local">
                 </td>
                 <td>
                     <input name="i_addr" type="text">
                 </td>
                 <td>
-                    <input type="hidden" name="rs_id" value="${resume1.rs_id}">
-                    <input type="submit" value="发送"></td>
+                    <input type="hidden" name="rs_id" value="${resume.rs_id}">
+                    <input type="submit" value="发送">
+                </td>
             </form>
         </tr>
     </table>
-    <a href="interviewController/toPage?choose='adminMain'">返回>>已读简历</a>
+    <a href="resumeController/showReadedResume">返回>>已读简历</a>
+    <a href="interviewController/toPage?choose=adminMain">返回>>主菜单</a>
 </body>
 </html>
 

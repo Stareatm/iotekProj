@@ -8,6 +8,10 @@
         VALUES (#{u_name},#{u_pass},#{u_type})
     </insert>
 
+    <update id="updateUserPassByName">
+        UPDATE T_USER SET U_PASS=#{u_pass} where u_name=#{u_name}
+    </update>
+
     <select id="login" resultType="User">
         SELECT * FROM T_USER WHERE U_NAME=#{u_name} and u_pass=#{u_pass} and u_type=#{u_type}
     </select>

@@ -12,4 +12,5 @@ public interface RecruitService {
     List<Recruit> getAllRecruit();
     boolean updateRecruit(Recruit recruit);
     boolean deleteRecruit(Recruit recruit);
+    List<Recruit> getAllRecruitByRc_status(Recruit recruit);
 }

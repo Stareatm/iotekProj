@@ -1,6 +1,5 @@
 package com.stareatm.service;
 
-import com.stareatm.model.Dept;
 import com.stareatm.model.Job;
 
 import java.util.List;
@@ -11,6 +10,8 @@ import java.util.List;
 public interface JobService {
     List<Job> getAllJob();
     Job getJobByJ_id(Job job);
-    Job getJobByJ_nameD_name(Job job, Dept dept);
+    Job getJobByJ_nameD_name(String j_name, String d_name);
     Job getJob_EmpByJ_id(Job job);
+
+    boolean addJobByJ_name(Job job);
 }

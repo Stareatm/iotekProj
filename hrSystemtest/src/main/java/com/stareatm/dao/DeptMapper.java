@@ -12,4 +12,6 @@ import java.util.List;
 public interface DeptMapper {
     List<Dept> getAllDept();
     Dept getDept_JobByD_name(Dept dept);
+    Dept getDeptByD_name(Dept dept);
+    boolean addDept(Dept dept);
 }

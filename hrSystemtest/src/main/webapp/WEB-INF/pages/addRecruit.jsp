@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: 刘
@@ -13,11 +14,37 @@
 <html>
 <head>
     <base href="<%=basePath%>"/>
-    <title></title>
+    <title>addRecruit</title>
+    <script type="text/javascript" src="js/jquery-3.1.0.js"></script>
+    <script>
+        $(function () {
+            $("#d_name").change(function () {
+                $.ajax({
+                    type:"post",
+                    url:"empController/findJob",
+                    data:{"d_name":$("#d_name").val()},
+                    success:function(obj){/*obj是返回的jobList*/
+                        $("#j_name").empty();
+                        if (obj.length!=0) {
+                            for ( var i=0; i<obj.length; i++) {
+                                var j_name = obj[i].j_name;
+                                $("#j_name").append(
+                                    "<option value="+j_name+">"
+                                    + j_name + "</option>");
+                            }
+                        }else {
+                            alert("该部门没有对应岗位!");
+                        }
+                    }
+                })
+            })
+        })
+    </script>
 </head>
 <body>
     <table border="1" cellpadding="0" cellspacing="0">
         <tr>
+            <th>部门名称</th>
             <th>职位名称</th>
             <th>公司名称</th>
             <th>职位月薪</th>
@@ -32,9 +59,30 @@
         </tr>
         <tr>
             <form action="recruitController/addRecruit">
-                <td><input name="rc_job" type="text"></td>
+                <td>
+                    <select name="d_name" id="d_name">
+                        <c:forEach items="${deptList}" var="dept">
+                            <option value="${dept.d_name}">${dept.d_name}</option>
+                        </c:forEach>
+                    </select>
+                </td>
+                <td>
+                    <select name="j_name" id="j_name">
+                        <%--<c:if test="${jobList.size()==0}">
+                            <option>无,请先添加岗位</option>
+                        </c:if>
+                        <c:if test="${jobList.size()!=0}">
+                            <c:forEach items="${jobList}" var="job">
+                                <option value="${job.j_name}">${job.j_name}</option>
+                            </c:forEach>
+                        </c:if>--%>
+                            <c:forEach items="${jobList}" var="job">
+                                <option value="${job.j_name}">${job.j_name}</option>
+                            </c:forEach>
+                    </select>
+                </td>
                 <td><input name="rc_company" type="text"></td>
-                <td><input name="rc_sal" type="number" min="3000" step="500"></td>
+                <td><input name="rc_sal" type="number" value="3000" min="3000" step="100">元/月</td>
                 <td>
                     <select name="rc_location">
                         <c:forEach items="${sessionScope.locationList}" var="location">
@@ -68,11 +116,14 @@
                 <td>
                     <textarea name="rc_more"></textarea>
                 </td>
-                <td><input type="submit" value="添加"></td>
+                <td>
+                    <input name="rc_status" type="hidden" value="0">
+                    <input type="submit" value="添加">
+                </td>
             </form>
         </tr>
     </table>
-    <a href="recruitController/toPage?choose='adminMain'">返回主界面</a>
+    <a href="recruitController/toPage?choose=adminMain">返回>>主界面</a>
 </body>
 </html>
 

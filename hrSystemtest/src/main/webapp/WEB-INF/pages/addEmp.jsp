@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt" %>
 <%--
   Created by IntelliJ IDEA.
   User: 刘
@@ -14,33 +15,8 @@
 <html>
 <head>
     <base href="<%=basePath%>"/>
-    <title></title>
-    <script src="../../js/jquery-3.1.0.js"></script>
-    <script>
-        $(function () {
-            function findJob() {
-                var d_name=$("#d_name").attr("val");
-                $.ajax({
-                    url:"empController/findJob",
-                    type:"post",
-                    data:{d_name:d_name},
-                    success:function(obj){/*obj是返回的jobList*/
-                        $("#j_name option").remove();
-                        if (obj.length!=0) {
-                            for ( var i=0; i<=obj.length; i++) {
-                                var j_name = obj[i].j_name;
-                                $("#j_name").append(
-                                    "<option value="+j_name+">"
-                                    + j_name + "</option>");
-                            }
-                        }else {
-                            alert("该部门没有对应岗位!");
-                        }
-                    }
-                })
-            }
-        })
-    </script>
+    <title>addEmp</title>
+
 </head>
 <body>
     <table border="1" cellpadding="0" cellspacing="0">
@@ -73,7 +49,8 @@
                     <input name="e_phone" type="text" value="${resume.rs_phone}" readonly="readonly">
                 </td>
                 <td>
-                    <input name="e_birthday" type="date" value="${resume.rs_birthday}" readonly="readonly">
+                    <fmt:formatDate value="${resume.rs_birthday}" pattern="yyyy-MM-dd" var="birthday"/>
+                    <input name="eBirthday" type="date"  readonly="readonly" value="${birthday}">
                 </td>
                 <td>
                     <input name="e_email" type="text" value="${resume.rs_email}" readonly="readonly">
@@ -82,23 +59,15 @@
                     <input name="e_addr" type="text" value="${resume.rs_addr}" readonly="readonly">
                 </td>
                 <td>
-                    <select name="d_name" id="d_name" onchange="findJob()">
-                        <%--<option value="请选择">请选择</option>--%>
-                        <c:forEach items="${deptList}" var="dept">
-                            <option value="${dept.d_name}">${dept.d_name}</option>
-                    </c:forEach>
-                    </select>
+                    <input name="d_name" type="text" value="${interview.d_name}" readonly="readonly">
                 </td>
                 <td>
-                    <select name="j_name" id="j_name">
-                        <c:forEach items="${jobList}" var="job">
-                            <option value="${job.j_name}">${job.j_name}</option>
-                        </c:forEach>
-                    </select>
+                    <input name="j_name" type="text" value="${interview.j_name}" readonly="readonly">
                 </td>
-                <td><input name="e_hireDate" type="date"></td>
+                <td><input name="hireDate" type="date"></td>
                 <td><input name="e_baseSal" type="number" min="3000" step="500" value="3000">元/月</td>
                 <td>
+                    <input name="e_status" type="hidden" value="0"><%--试用期--%>
                     <input type="submit" value="入职">
                 </td>
             </form>

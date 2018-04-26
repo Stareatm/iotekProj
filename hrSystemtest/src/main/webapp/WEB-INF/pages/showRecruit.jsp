@@ -14,7 +14,32 @@
 <html>
 <head>
     <base href="<%=basePath%>"/>
-    <title></title>
+    <title>showRecruit</title>
+    <script type="text/javascript" src="js/jquery-3.1.0.js"></script>
+    <script>
+        $(function () {
+            $("#d_name").change(function () {
+                $.ajax({
+                    type:"post",
+                    url:"empController/findJob",
+                    data:{"d_name":$("#d_name").val()},
+                    success:function(obj){/*obj是返回的jobList*/
+                        $("#j_name").empty();
+                        if (obj.length!=0) {
+                            for ( var i=0; i<obj.length; i++) {
+                                var j_name = obj[i].j_name;
+                                $("#j_name").append(
+                                    "<option value="+j_name+">"
+                                    + j_name + "</option>");
+                            }
+                        }else {
+                            alert("该部门没有对应岗位!");
+                        }
+                    }
+                })
+            })
+        })
+    </script>
 </head>
 <body>
     <c:if test="${recruitList.size()==0}">
@@ -29,6 +54,7 @@
         </div>
         <table border="1" cellpadding="0" cellspacing="0">
             <tr>
+                <th>部门名称</th>
                 <th>职位名称</th>
                 <th>公司名称</th>
                 <th>职位月薪</th>
@@ -39,16 +65,15 @@
                 <th>学历</th>
                 <th>性别</th>
                 <th>相关介绍</th>
-                <c:if test="${sessionScope.user.u_type==2}"><%--管理员--%>
-                    <th>修改招聘信息</th>
-                    <th>删除招聘信息</th>
-                </c:if>
+                <th>状态</th>
+                <th>修改招聘信息</th>
+                <th>删除招聘信息</th>
             </tr>
-
-            <c:if test="${sessionScope.user.u_type!=2}"><%--非管理员--%>
-                <c:forEach items="${recruitList}" var="recruit">
+            <c:forEach items="${recruitList}" var="recruit">
+                <c:if test="${recruit.rc_status==1}">
                     <tr>
-                        <td>${recruit.rc_job}</td>
+                        <td>${recruit.d_name}</td>
+                        <td>${recruit.j_name}</td>
                         <td>${recruit.rc_company}</td>
                         <td>${recruit.rc_sal}</td>
                         <td>${recruit.rc_location}</td>
@@ -58,17 +83,34 @@
                         <td>${recruit.rc_eduBG}</td>
                         <td>${recruit.rc_sex}</td>
                         <td>${recruit.rc_more}</td>
+                        <td>已发布</td>
+                        <td>无法删除</td>
+                        <td>无法修改</td>
                     </tr>
-                </c:forEach>
-            </c:if>
-
-            <c:if test="${sessionScope.user.u_type==2}"><%--管理员--%>
-                <c:forEach items="${recruitList}" var="recruit">
-                    <<form action="recruitController/updateRecruit">
-                        <tr>
-                            <td><input name="rc_job" type="text" value="${recruit.rc_job}"></td>
+                </c:if>
+                <c:if test="${recruit.rc_status==0}"><%--可修改,删除--%>
+                    <tr>
+                        <form action="recruitController/updateRecruit">
+                            <td>
+                                <select name="d_name" id="d_name">
+                                    <option value="${recruit.d_name}" selected="selected">${recruit.d_name}</option>
+                                    <c:forEach items="${deptList}" var="dept">
+                                        <%--<c:if test="${recruit.d_name.equals(dept.d_name)}">
+                                            <option value="${recruit.d_name}" selected="selected" >${recruit.d_name}</option>
+                                        </c:if>--%>
+                                        <c:if test="${!recruit.d_name.equals(dept.d_name)}">
+                                            <option value="${dept.d_name}">${dept.d_name}</option>
+                                        </c:if>
+                                    </c:forEach>
+                                </select>
+                            </td>
+                            <td>
+                                <select name="j_name" id="j_name">
+                                    <option value="${recruit.j_name}" selected="selected">${recruit.j_name}</option>
+                                </select>
+                            </td>
                             <td><input name="rc_company" type="text" value="${recruit.rc_company}"></td>
-                            <td><input name="rc_sal" type="number" min="3000" step="500" value="${recruit.rc_sal}">元/月</td>
+                            <td><input name="rc_sal" type="number" min="3000" step="100" value="${recruit.rc_sal}">元/月</td>
                             <td>
                                 <select name="rc_location">
                                     <c:forEach items="${sessionScope.locationList}" var="location">
@@ -129,31 +171,32 @@
                             <td>
                                 <textarea name="rc_more">${recruit.rc_more}</textarea>
                             </td>
-                        </tr>
-                        <td>
-                            <input type="submit" value="修改">
-                        </td>
-                    </form>
-                    <td>
-                        <form action="recruitController/deleteRecruit">
-                            <input type="hidden" value="rc_id">
-                            <input type="submit" value="删除">
+                            <td>
+                                <select name="rc_status">
+                                    <option value="${recruit.rc_status}" selected="selected">未发布</option>
+                                    <option value="1">发布</option>
+                                </select>
+                            </td>
+                            <td>
+                                <input type="hidden" name="rc_id" value="${recruit.rc_id}" >
+                                <input type="submit" value="修改">
+                            </td>
                         </form>
-                    </td>
-                </c:forEach>
-            </c:if>
+                        <td>
+                            <form action="recruitController/deleteRecruit">
+                                <input type="hidden" name="rc_id" value="${recruit.rc_id}" >
+                                <input type="submit" value="删除">
+                            </form>
+                        </td>
+                    </tr>
+                </c:if>
+            </c:forEach>
         </table>
     </c:if>
 
     <c:if test="${sessionScope.user.u_type==2}">
-        <a href="recruitController/toPage?choose='addRecruit'">添加招聘</a>
-        <a href="recruitController/toPage?choose='adminMain'">返回主菜单</a>
-    </c:if>
-    <c:if test="${sessionScope.user.u_type==1}">
-        <a href="recruitController/toPage?choose='empMain'">返回主菜单</a>
-    </c:if>
-    <c:if test="${sessionScope.user.u_type==0}">
-        <a href="recruitController/toPage?choose='userMain'">返回主菜单</a>
+        <a href="recruitController/toPage?choose=addRecruit">添加招聘</a><br>
+        <a href="recruitController/toPage?choose=adminMain">返回>>主菜单</a>
     </c:if>
 
 </body>

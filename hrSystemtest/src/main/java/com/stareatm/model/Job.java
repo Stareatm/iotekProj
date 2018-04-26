@@ -1,4 +1,4 @@
-package com.stareatm.model;;
+package com.stareatm.model;
 
 import java.io.Serializable;
 import java.util.List;
@@ -22,6 +22,9 @@ public class Job implements Serializable{
     public Job(int j_id) {
 
         this.j_id = j_id;
+    }
+
+    public Job() {
     }
 
     public int getJ_id() {

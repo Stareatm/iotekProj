@@ -12,15 +12,17 @@ public class Interview implements Serializable {
     private Date i_time;
     private String i_addr;
     private int i_status;//0表示该邀请已发送游客已接收,1表示游客确认面试,2表示已入职
-    private Job job;
+    private String d_name;
+    private String j_name;
 
-    public Interview(int i_id, Resume resume, Date i_time, String i_addr, int i_status, Job job) {
+    public Interview(int i_id, Resume resume, Date i_time, String i_addr, int i_status, String d_name, String j_name) {
         this.i_id = i_id;
         this.resume = resume;
         this.i_time = i_time;
         this.i_addr = i_addr;
         this.i_status = i_status;
-        this.job = job;
+        this.d_name = d_name;
+        this.j_name = j_name;
     }
 
     public Interview(int i_id) {
@@ -72,12 +74,20 @@ public class Interview implements Serializable {
         this.i_status = i_status;
     }
 
-    public Job getJob() {
-        return job;
+    public String getD_name() {
+        return d_name;
     }
 
-    public void setJob(Job job) {
-        this.job = job;
+    public void setD_name(String d_name) {
+        this.d_name = d_name;
+    }
+
+    public String getJ_name() {
+        return j_name;
+    }
+
+    public void setJ_name(String j_name) {
+        this.j_name = j_name;
     }
 
     @Override
@@ -99,9 +109,11 @@ public class Interview implements Serializable {
     public String toString() {
         return "Interview{" +
                 "i_id=" + i_id +
-                ", i_time='" + i_time + '\'' +
+                ", i_time=" + i_time +
                 ", i_addr='" + i_addr + '\'' +
-                ", i_status='" + i_status + '\'' +
+                ", i_status=" + i_status +
+                ", d_name='" + d_name + '\'' +
+                ", j_name='" + j_name + '\'' +
                 '}';
     }
 }

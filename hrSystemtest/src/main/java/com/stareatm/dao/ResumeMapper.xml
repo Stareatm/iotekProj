@@ -9,7 +9,8 @@
     </insert>
 
     <update id="updateResume">
-        UPDATE T_RESUME SET RS_NAME=#{rs_name},RS_SEX=#{rs_sex},RS_IDNUMBER=#{rs_IDNumber},RS_BIRTHDAY=#{rs_birthday},
+        UPDATE T_RESUME
+        SET RS_NAME=#{rs_name},RS_SEX=#{rs_sex},RS_IDNUMBER=#{rs_IDNumber},RS_BIRTHDAY=#{rs_birthday},
             RS_RESIDENCE=#{rs_residence},RS_ADDR=#{rs_addr},RS_EXPTIME=#{rs_expTime},RS_PHONE=#{rs_phone},RS_EMAIL=#{rs_email},
             RS_DESIREDPOSITION=#{rs_desiredPosition},RS_DESIREDLOCATION=#{rs_desiredLocation},RS_EXPECTEDSAL=#{rs_expectedSal},
             RS_CAREEREXP=#{rs_careerExp},RS_STATUS=#{rs_status}
@@ -21,25 +22,29 @@
     </delete>
 
     <select id="getAllResumeByUser" resultMap="Resume_User">
-        SELECT rs.*,U_NAME,U_PASS,U_TYPE from T_RESUME rs,T_USER u
+        SELECT rs.*,U_NAME,U_PASS,U_TYPE
+        from T_RESUME rs,T_USER u
         WHERE rs.U_ID=u.U_ID
         AND rs.U_ID=#{u_id}
     </select>
 
     <select id="getResumeByRs_id" resultMap="Resume_User">
-        SELECT rs.*,U_NAME,U_PASS,U_TYPE from T_RESUME rs,T_USER u
+        SELECT rs.*,U_NAME,U_PASS,U_TYPE
+        from T_RESUME rs,T_USER u
         WHERE rs.U_ID=u.U_ID
         AND rs.RS_ID=#{rs_id}
     </select>
 
     <select id="getAllResumeByRs_status" resultMap="Resume_User">
-        SELECT rs.*,U_NAME,U_PASS,U_TYPE from T_RESUME rs,T_USER u
+        SELECT rs.*,U_NAME,U_PASS,U_TYPE
+        from T_RESUME rs,T_USER u
         WHERE rs.U_ID=u.U_ID
         AND rs.RS_STATUS=#{rs_status}
     </select>
 
     <select id="getResume_Interview" resultMap="Resume_Interview">
-        SELECT rs.*,i.I_ID,i.I_JOB,i.I_TIME,i.I_ADDR,i.I_STATUS from T_RESUME rs,T_INTERVIEW i
+        SELECT rs.*,i.I_ID,i.I_TIME,i.I_ADDR,i.I_STATUS
+        from T_RESUME rs,T_INTERVIEW i
         WHERE rs.RS_ID=i.RS_ID
         AND rs.RS_ID=#{rs_id}
     </select>

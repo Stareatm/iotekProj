@@ -26,12 +26,12 @@ public class InterviewServiceImpl implements InterviewService {
     }
 
     @Override
-    public List<Interview> getInterview_Rs_JobByI_status(Interview interview) {
-        return interviewMapper.getInterview_Rs_JobByI_status(interview);
+    public List<Interview> getInterview_RsByI_status(Interview interview) {
+        return interviewMapper.getInterview_RsByI_status(interview);
     }
 
     @Override
-    public Interview getInterview_Rs_Job(Interview interview) {
-        return interviewMapper.getInterview_Rs_Job(interview);
+    public Interview getInterview_Rs(Interview interview) {
+        return interviewMapper.getInterview_Rs(interview);
     }
 }

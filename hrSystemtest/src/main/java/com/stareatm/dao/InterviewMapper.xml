@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.stareatm.dao.InterviewMapper">
     <insert id="addInterview">
-        INSERT INTO T_INTERVIEW(RS_ID,I_TIME,I_ADDR,I_STATUS,J_ID)
-        VALUES (#{resume.rs_id},#{i_time},#{i_addr},#{i_status},#{job.j_id})
+        INSERT INTO T_INTERVIEW(RS_ID,I_TIME,I_ADDR,I_STATUS,D_NAME,J_NAME)
+        VALUES (#{resume.rs_id},#{i_time},#{i_addr},#{i_status},#{d_name},#{j_name})
     </insert>
 
     <update id="updateInterview">
@@ -18,18 +18,16 @@
         AND i.RS_ID=#{resume.rs_id}
     </select>
 
-    <select id="getInterview_Rs_JobByI_status" resultMap="Interview_Resume_Job">
-        SELECT rs.*,I_ID,I_TIME,I_ADDR,I_STATUS,J_ID,J_NAME
-        FROM T_INTERVIEW i,T_RESUME rs,T_JOB j
-        WHERE i.J_ID=j.J_ID
-        AND i.RS_ID=rs.RS_ID
+    <select id="getInterview_RsByI_status" resultMap="Interview_Resume">
+        SELECT rs.*,I_ID,I_TIME,I_ADDR,I_STATUS,J_NAME,D_NAME
+        FROM T_INTERVIEW i,T_RESUME rs
+        WHERE i.RS_ID=rs.RS_ID
         AND i.I_STATUS=#{i_status}
     </select>
-    <select id="getInterview_Rs_Job" resultMap="Interview_Resume_Job">
-        SELECT rs.*,I_ID,I_TIME,I_ADDR,I_STATUS,J_ID,J_NAME
-        FROM T_INTERVIEW i,T_RESUME rs,T_JOB j
-        WHERE i.J_ID=j.J_ID
-        AND i.RS_ID=rs.RS_ID
+    <select id="getInterview_Rs" resultMap="Interview_Resume">
+        SELECT rs.*,I_ID,I_TIME,I_ADDR,I_STATUS,J_NAME,D_NAME
+        FROM T_INTERVIEW i,T_RESUME rs
+        WHERE i.RS_ID=rs.RS_ID
         AND i.I_ID=#{i_id}
     </select>
 
@@ -38,6 +36,8 @@
         <result property="i_time" column="I_TIME"/>
         <result property="i_addr" column="I_ADDR"/>
         <result property="i_status" column="I_STATUS"/>
+        <result property="j_name" column="J_NAME"/>
+        <result property="d_name" column="D_NAME"/>
         <association property="resume" javaType="Resume">
             <id property="rs_id" column="RS_ID"/>
             <result property="rs_name" column="RS_NAME"/>

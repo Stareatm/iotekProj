@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt" %>
 <%--
   Created by IntelliJ IDEA.
   User: 刘
@@ -15,12 +15,12 @@
 <html>
 <head>
     <base href="<%=basePath%>"/>
-    <title></title>
+    <title>showReadedResume</title>
 </head>
 <body>
     <c:if test="${resumeList.size()==0}">
         <div>
-            对不起,没有相关的简历!
+            对不起,没有相关已读的简历!
         </div>
     </c:if>
     <c:if test="${resumeList.size()!=0}">
@@ -49,11 +49,12 @@
                     </td>
                     <td>${resume.rs_IDNumber}</td>
                     <td>
-                        <fmt:formatDate value="${resume.rs_birthday}" pattern="YYYY-MM-DD HH24:MM:SS"/>
+                        <fmt:formatDate value="${resume.rs_birthday}" pattern="yyyy-MM-dd" type="date" var="birthday"/>
+                        <input type="date" value="${birthday}" readonly="readonly">
                     </td>
                     <td>${resume.rs_residence}</td>
                     <td>${resume.rs_addr}</td>
-                    <td>${resume.rs_expTime}年</td>
+                    <td>${resume.rs_expTime}</td>
                     <td>${resume.rs_phone}</td>
                     <td>${resume.rs_email}</td>
                     <td>${resume.rs_desiredPosition}</td>
@@ -80,7 +81,7 @@
             </c:forEach>
         </table>
     </c:if>
-    <a href="recruitController/toPage?choose='adminMain'">返回主界面</a>
+    <a href="recruitController/toPage?choose=adminMain">返回主界面</a>
 </body>
 </html>
 

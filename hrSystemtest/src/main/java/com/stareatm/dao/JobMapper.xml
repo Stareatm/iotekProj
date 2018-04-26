@@ -1,23 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.stareatm.dao.JobMapper">
+    <insert id="addJobByJ_name">
+        INSERT into T_JOB (D_ID,J_NAME)
+        VALUES (#{dept.d_id},#{j_name})
+    </insert>
+
     <select id="getAllJob" resultMap="Job_Dept">
-        SELECT j.J_ID,J_NAME,j.D_ID,d.D_NAME FROM T_JOB j,T_DEPT d
+        SELECT j.J_ID,J_NAME,j.D_ID,d.D_NAME
+        FROM T_JOB j,T_DEPT d
         WHERE j.D_ID=d.D_ID
         ORDER BY d.D_NAME
     </select>
 
     <select id="getJobByJ_id" resultMap="Job_Dept">
-        SELECT j.J_ID,J_NAME,j.D_ID,d.D_NAME FROM T_JOB j,T_DEPT d
+        SELECT j.J_ID,J_NAME,j.D_ID,d.D_NAME
+        FROM T_JOB j,T_DEPT d
         WHERE j.D_ID=d.D_ID
         AND j.J_ID=#{j_id}
     </select>
 
     <select id="getJobByJ_nameD_name" resultMap="Job_Dept">
-        SELECT j.J_ID,J_NAME,j.D_ID,d.D_NAME FROM T_JOB j,T_DEPT d
+        SELECT j.J_ID,j.J_NAME,d.D_ID,d.D_NAME
+        FROM T_JOB j,T_DEPT d
         WHERE j.D_ID=d.D_ID
-        AND j.J_NAME=#{j_name}
-        and d.d_name=#{d_name}
+        AND j.J_NAME=#{0}
+        and d.d_name=#{1}
     </select>
     <select id="getJob_EmpByJ_id" resultMap="Job_Emp">
         SELECT e.*,j.J_NAME
@@ -50,6 +58,8 @@
             <result property="e_addr" column="E_ADDR"/>
             <result property="e_birthday" column="E_BIRTHDAY"/>
             <result property="e_email" column="E_EMAIL"/>
+            <result property="e_account" column="E_ACCOUNT"/>
+            <result property="e_pass" column="E_PASS"/>
         </collection>
     </resultMap>
 </mapper>

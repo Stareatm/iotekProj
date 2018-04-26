@@ -34,4 +34,9 @@ public class RecruitServiceImpl implements RecruitService {
     public boolean deleteRecruit(Recruit recruit) {
         return recruitMapper.deleteRecruit(recruit);
     }
+
+    @Override
+    public List<Recruit> getAllRecruitByRc_status(Recruit recruit) {
+        return recruitMapper.getAllRecruitByRc_status(recruit);
+    }
 }

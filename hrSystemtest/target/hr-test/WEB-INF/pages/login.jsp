@@ -23,9 +23,17 @@
             密码:<input type="password" name="u_pass"><br>
             <select name="u_type">
                 <option value="0">普通用户</option>
-                <option value="1">员工</option>
+                <%--<option value="1">员工</option>--%>
                 <option value="2">管理员</option>
             </select>
+            <input type="submit" value="登录">
+        </form>
+    </fieldset>
+    <fieldset>
+        <legend>员工登录专用通道</legend>
+        <form action="empController/empLogin" method="post">
+            用户名:<input type="text" name="e_account"><br>
+            密码:<input type="password" name="e_pass"><br>
             <input type="submit" value="登录">
         </form>
     </fieldset>

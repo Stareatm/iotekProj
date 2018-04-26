@@ -1,6 +1,9 @@
 package com.stareatm.controller;
 
+import com.stareatm.model.Dept;
+import com.stareatm.model.Job;
 import com.stareatm.model.Recruit;
+import com.stareatm.service.DeptService;
 import com.stareatm.service.RecruitService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,10 +23,22 @@ import java.util.List;
 public class RecruitController {
     @Resource
     private RecruitService recruitService;
+    @Resource
+    private DeptService deptService;
     @RequestMapping("showRecruit")
     public String showRecruit(Model model,HttpSession session) throws Exception{
         List<Recruit> recruitList=recruitService.getAllRecruit();
         model.addAttribute("recruitList",recruitList);
+
+        List<Dept> deptList=deptService.getAllDept();
+        model.addAttribute("deptList",deptList);
+        List<Job> jobList=new ArrayList<>();
+        if(deptList.size()!=0){
+            Dept dept=deptService.getDept_JobByD_name(deptList.get(0));
+            jobList=dept.getJobList();
+        }
+        model.addAttribute("jobList",jobList);
+
         ArrayList<String> locationList=new ArrayList<>();
         locationList.add("北京");
         locationList.add("上海");
@@ -66,7 +81,14 @@ public class RecruitController {
         session.setAttribute("eduBGList",eduBGList);
         return "showRecruit";
     }
-
+    @RequestMapping("showReceivedRecruit")
+    public String showReceivedRecruit(Model model)throws Exception{
+        Recruit recruit=new Recruit();
+        recruit.setRc_status(1);//已发布的招聘信息
+        List<Recruit> recruitList=recruitService.getAllRecruitByRc_status(recruit);
+        model.addAttribute("recruitList",recruitList);
+        return "showReceivedRecruit";
+    }
     @RequestMapping("updateRecruit")
     public String updateRecruit(Recruit recruit,HttpSession session,Model model) throws Exception {
         recruitService.updateRecruit(recruit);
@@ -80,8 +102,17 @@ public class RecruitController {
     }
 
     @RequestMapping("toPage")
-    public String toPage(String choose) throws Exception {
+    public String toPage(String choose,Model model) throws Exception {
+        System.out.println(choose);
         if("addRecruit".equals(choose)){
+            List<Dept> deptList=deptService.getAllDept();
+            model.addAttribute("deptList",deptList);
+            List<Job> jobList=new ArrayList<>();
+            if(deptList.size()!=0){
+                Dept dept=deptService.getDept_JobByD_name(deptList.get(0));
+                jobList=dept.getJobList();
+            }
+            model.addAttribute("jobList",jobList);
             return "addRecruit";
         }else if ("adminMain".equals(choose)){
             return "adminMain";

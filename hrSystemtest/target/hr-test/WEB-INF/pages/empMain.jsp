@@ -16,8 +16,9 @@
     <title></title>
 </head>
 <body>
-    <div>欢迎员工&nbsp;${sessionScope.user}&nbsp;登录</div>
-    <a href="#">查看招聘信息</a>
+    <div>欢迎员工&nbsp;${sessionScope.emp}&nbsp;登录</div>
+    <a href="recruitController/showReceivedRecruit">查看招聘信息</a>
+    <a href="empController/showEmpInfo">查看个人信息</a>
 </body>
 </html>
 

@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt" %>
 <%--
   Created by IntelliJ IDEA.
   User: 刘
@@ -60,13 +60,12 @@
                         </td>
                         <td><input name="rs_IDNumber" type="text" value="${resume.rs_IDNumber}"></td>
                         <td>
-                            <fmt:formatDate value="${resume.rs_birthday}" pattern="YYYY-MM-DD HH24:MM:SS" var="birthday">
-                                <input type="date" name="rs_birthday" value="${birthday}">
-                            </fmt:formatDate>
+                            <fmt:formatDate value="${resume.rs_birthday}" pattern="yyyy-MM-dd" var="birthday"/>
+                            <input type="date" name="birthday" value="${birthday}">
                         </td>
                         <td><input type="text" name="rs_residence" value="${resume.rs_residence}"></td>
-                        <td><input type="text" name="addr" value="${resume.rs_addr}"></td>
-                        <td><input type="number" name="rs_expTime" min="0" value="${resume.rs_expTime}">年</td>
+                        <td><input type="text" name="rs_addr" value="${resume.rs_addr}"></td>
+                        <td><input type="text" name="rs_expTime" value="${resume.rs_expTime}"></td>
                         <td><input type="text" name="rs_phone" value="${resume.rs_phone}"></td>
                         <td><input type="text" name="rs_email" value="${resume.rs_email}"></td>
                         <td><input type="text" name="rs_desiredPosition" value="${resume.rs_desiredPosition}"></td>
@@ -75,6 +74,7 @@
                         <td><textarea name="rs_careerExp">${resume.rs_careerExp}</textarea></td>
                         <td>
                             <input type="hidden" name="rs_status" value="-1">
+                            <input type="hidden" name="rs_id" value="${resume.rs_id}">
                             <input type="submit" value="修改">
                         </td>
                     </form>
@@ -99,8 +99,8 @@
             </c:forEach>
         </table>
     </c:if>
-    <a href="recruitController/toPage?choose='addResume'">添加简历</a>
-    <a href="recruitController/toPage?choose'userMain'">返回主菜单</a>
+    <a href="recruitController/toPage?choose=addResume">添加简历</a>
+    <a href="recruitController/toPage?choose=userMain">返回主菜单</a>
 </body>
 </html>
 

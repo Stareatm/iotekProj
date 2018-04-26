@@ -17,7 +17,7 @@
 </head>
 <body>
     注册失败!<br>
-    <a href="userController/toPage?choose='index'">首页</a>
+    <a href="userController/toPage?choose=index">首页</a>
 </body>
 </html>
 

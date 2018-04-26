@@ -13,6 +13,6 @@ public interface InterviewMapper {
     boolean addInterview(Interview interview);
     boolean updateInterview(Interview interview);
     Interview getInterviewByRs_id(Interview interview);
-    List<Interview> getInterview_Rs_JobByI_status(Interview interview);
-    Interview getInterview_Rs_Job(Interview interview);
+    List<Interview> getInterview_RsByI_status(Interview interview);
+    Interview getInterview_Rs(Interview interview);
 }

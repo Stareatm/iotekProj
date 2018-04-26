@@ -44,10 +44,10 @@
                     </select>
                 </td>
                 <td><input name="rs_IDNumber" type="text"></td>
-                <td><input type="date" name="rs_birthday"></td>
+                <td><input type="date" name="birthday"></td>
                 <td><input type="text" name="rs_residence"></td>
-                <td><input type="text" name="addr"></td>
-                <td><input type="number" name="rs_expTime" min="0">年</td>
+                <td><input type="text" name="rs_addr"></td>
+                <td><input type="text" name="rs_expTime" min="0"></td>
                 <td><input type="text" name="rs_phone"></td>
                 <td><input type="text" name="rs_email" ></td>
                 <td><input type="text" name="rs_desiredPosition"></td>
@@ -55,12 +55,13 @@
                 <td><input type="number" name="rs_expectedSal" step="500">元/月</td>
                 <td><textarea name="rs_careerExp"></textarea></td>
                 <td>
+                    <input type="hidden" name="rs_status" value="-1">
                     <input type="submit" value="添加">
                 </td>
             </form>
         </tr>
     </table>
-    <a href="recruitController/toPage?choose'userMain'">返回主菜单</a>
+    <a href="recruitController/toPage?choose=userMain">返回主菜单</a>
 </body>
 </html>
 
