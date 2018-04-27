@@ -40,13 +40,13 @@ public class DeptController {
         List<Dept> deptList=deptService.getAllDept();
         for (int i=0;i<deptList.size();i++){
             Dept dept=deptService.getDept_JobByD_name(deptList.get(i));//dept_job
-            if (null!=dept){
-                List<Job> jobList=dept.getJobList();
+            if (null!=dept){//部门有职位
+                List<Job> jobList=dept.getJobList();//当前部门对应的职位
                 for (int j=0;j<jobList.size();j++){
                     Job job=jobService.getJob_EmpByJ_id(jobList.get(j));//添加员工信息
-                    if(null!=job){
+                    if(null!=job){//职位有员工
                         jobList.get(j).setEmpList(job.getEmpList());
-                    }
+                    }//else{empList=null}
                 }
                 deptList.get(i).setJobList(jobList);//添加job
             }else{
@@ -75,7 +75,8 @@ public class DeptController {
     }
 
     @RequestMapping("deleteDept")
-    public String deleteDept()throws Exception{
-
+    public String deleteDept(Dept dept,Model model)throws Exception{
+        deptService.deleteDeptByD_name(dept);
+        return showDept(model);
     }
 }

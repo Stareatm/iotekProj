@@ -16,6 +16,15 @@
 <head>
     <base href="<%=basePath%>"/>
     <title></title>
+    <style type="text/css">
+        .send{
+            width: 100px;
+        }
+        .send1{
+            width: 100px;
+            font-size: 14px;
+        }
+    </style>
 </head>
 <body>
     <c:if test="${resumeList.size()==0}">
@@ -41,7 +50,7 @@
                 <th>工作经历</th>
                 <th>修改简历</th>
                 <th>删除简历</th>
-                <th>发送简历</th>
+                <th> <div class="send">发送简历</div></th>
             </tr>
             <c:forEach items="${resumeList}" var="resume">
                 <tr>
@@ -85,15 +94,17 @@
                         </form>
                     </td>
                     <td>
-                        <c:if test="${resume.rs_status==-1}"><%--未发送--%>
-                            <form action="resumeController/sendResume">
-                                <input type="hidden" name="rs_id" value="${resume.rs_id}">
-                                <input type="submit" value="发送">
-                            </form>
-                        </c:if>
-                        <c:if test="${resume.rs_status!=-1}"><%--已发送--%>
-                            该简历已发送过
-                        </c:if>
+                        <div class="send1">
+                            <c:if test="${resume.rs_status==-1}"><%--未发送--%>
+                                <form action="resumeController/sendResume">
+                                    <input type="hidden" name="rs_id" value="${resume.rs_id}">
+                                    <input type="submit" value="发送">
+                                </form>
+                            </c:if>
+                            <c:if test="${resume.rs_status!=-1}"><%--已发送--%>
+                                <div>该简历已发送过</div>
+                            </c:if>
+                        </div>
                     </td>
                 </tr>
             </c:forEach>

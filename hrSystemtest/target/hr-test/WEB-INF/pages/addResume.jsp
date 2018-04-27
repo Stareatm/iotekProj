@@ -52,7 +52,7 @@
                 <td><input type="text" name="rs_email" ></td>
                 <td><input type="text" name="rs_desiredPosition"></td>
                 <td><input type="text" name="rs_desiredLocation"></td>
-                <td><input type="number" name="rs_expectedSal" step="500">元/月</td>
+                <td><input type="number" name="rs_expectedSal" step="500" min="3000">元/月</td>
                 <td><textarea name="rs_careerExp"></textarea></td>
                 <td>
                     <input type="hidden" name="rs_status" value="-1">

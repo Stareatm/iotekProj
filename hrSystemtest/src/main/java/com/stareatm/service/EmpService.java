@@ -12,6 +12,7 @@ public interface EmpService {
     List<Emp> getEmp_JobByJ_ID(Emp emp);
     Emp login(Emp emp);
     boolean updateEmpPassByAccount(Emp emp);
-
     Emp getEmpByE_account(Emp emp);
+    Emp getEmp_JobByE_id(Emp emp);
+    boolean updateEmp(Emp emp);
 }

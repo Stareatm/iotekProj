@@ -68,14 +68,6 @@
                 </td>
                 <td>
                     <select name="j_name" id="j_name">
-                        <%--<c:if test="${jobList.size()==0}">
-                            <option>无,请先添加岗位</option>
-                        </c:if>
-                        <c:if test="${jobList.size()!=0}">
-                            <c:forEach items="${jobList}" var="job">
-                                <option value="${job.j_name}">${job.j_name}</option>
-                            </c:forEach>
-                        </c:if>--%>
                             <c:forEach items="${jobList}" var="job">
                                 <option value="${job.j_name}">${job.j_name}</option>
                             </c:forEach>

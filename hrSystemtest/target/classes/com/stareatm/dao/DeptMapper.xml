@@ -4,6 +4,9 @@
     <insert id="addDept">
         INSERT INTO T_DEPT(D_NAME) VALUES (#{d_name})
     </insert>
+    <delete id="deleteDeptByD_name">
+        DELETE FROM T_DEPT WHERE D_NAME=#{d_name}
+    </delete>
 
     <select id="getAllDept" resultType="Dept">
         select D_ID,D_NAME from T_DEPT

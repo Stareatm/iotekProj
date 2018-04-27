@@ -39,4 +39,15 @@ public class JobServiceImpl implements JobService {
     public boolean addJobByJ_name(Job job) {
         return jobMapper.addJobByJ_name(job);
     }
+
+    @Override
+    public boolean deleteJobByJ_id(Job job) {
+        return jobMapper.deleteJobByJ_id(job);
+    }
+
+    @Override
+    public List<Job> getJobByD_id(Job job) {
+        return jobMapper.getJobByD_id(job);
+    }
+
 }

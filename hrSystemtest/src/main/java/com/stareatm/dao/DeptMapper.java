@@ -14,4 +14,5 @@ public interface DeptMapper {
     Dept getDept_JobByD_name(Dept dept);
     Dept getDeptByD_name(Dept dept);
     boolean addDept(Dept dept);
+    boolean deleteDeptByD_name(Dept dept);
 }

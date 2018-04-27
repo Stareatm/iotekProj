@@ -6,6 +6,10 @@
         VALUES (#{dept.d_id},#{j_name})
     </insert>
 
+    <delete id="deleteJobByJ_id">
+        DELETE FROM T_JOB WHERE J_ID=#{j_id}
+    </delete>
+
     <select id="getAllJob" resultMap="Job_Dept">
         SELECT j.J_ID,J_NAME,j.D_ID,d.D_NAME
         FROM T_JOB j,T_DEPT d
@@ -14,7 +18,7 @@
     </select>
 
     <select id="getJobByJ_id" resultMap="Job_Dept">
-        SELECT j.J_ID,J_NAME,j.D_ID,d.D_NAME
+        SELECT j.J_ID,J_NAME,d.D_ID,d.D_NAME
         FROM T_JOB j,T_DEPT d
         WHERE j.D_ID=d.D_ID
         AND j.J_ID=#{j_id}
@@ -32,6 +36,13 @@
         FROM T_EMP e,T_JOB j
         WHERE e.J_ID=j.J_ID
         AND j.J_ID=#{j_id}
+    </select>
+
+    <select id="getJobByD_id" resultMap="Job_Dept">
+          SELECT j.J_ID,J_NAME,d.D_ID,d.D_NAME
+        FROM T_JOB j,T_DEPT d
+        WHERE j.D_ID=d.D_ID
+        AND j.D_ID=#{dept.d_id}
     </select>
 
     <resultMap id="Job_Dept" type="Job">

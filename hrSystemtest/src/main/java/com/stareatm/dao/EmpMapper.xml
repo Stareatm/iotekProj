@@ -10,6 +10,13 @@
         UPDATE T_EMP SET E_PASS=#{e_pass} where e_id=#{e_id}
     </update>
 
+    <update id="updateEmp">
+      UPDATE T_EMP SET J_ID=#{job.j_id},e_baseSal=#{e_baseSal},e_hireDate=#{e_hireDate},e_status=#{e_status},
+        e_name=#{e_name},e_sex=#{e_sex},e_IDNumber=#{e_IDNumber},e_phone=#{e_phone},e_addr=#{e_addr},
+        e_birthday=#{e_birthday},e_email=#{e_email},e_account=#{e_account},e_pass=#{e_pass}
+        where e_id=#{e_id}
+    </update>
+
     <select id="getEmp_JobByJ_ID" resultMap="Emp_Job">
         SELECT e.*,j.J_NAME
         FROM T_EMP e,T_JOB j
@@ -27,6 +34,13 @@
 
     <select id="getEmpByE_account" resultType="com.stareatm.model.Emp">
         SELECT * from T_EMP WHERE E_ACCOUNT=#{e_account}
+    </select>
+
+    <select id="getEmp_JobByE_id" resultMap="Emp_Job">
+        SELECT e.*,j.J_NAME
+        FROM T_EMP e,T_JOB j
+        WHERE e.J_ID=j.J_ID
+        AND e.E_ID=#{e_id}
     </select>
 
     <resultMap id="Emp_Job" type="Emp">

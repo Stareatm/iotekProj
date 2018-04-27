@@ -12,6 +12,7 @@ public interface JobService {
     Job getJobByJ_id(Job job);
     Job getJobByJ_nameD_name(String j_name, String d_name);
     Job getJob_EmpByJ_id(Job job);
-
     boolean addJobByJ_name(Job job);
+    boolean deleteJobByJ_id(Job job);
+    List<Job> getJobByD_id(Job job);
 }

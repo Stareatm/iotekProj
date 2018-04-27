@@ -39,4 +39,14 @@ public class EmpServiceImpl implements EmpService {
     public Emp getEmpByE_account(Emp emp) {
         return empMapper.getEmpByE_account(emp);
     }
+
+    @Override
+    public Emp getEmp_JobByE_id(Emp emp) {
+        return empMapper.getEmp_JobByE_id(emp);
+    }
+
+    @Override
+    public boolean updateEmp(Emp emp) {
+        return empMapper.updateEmp(emp);
+    }
 }

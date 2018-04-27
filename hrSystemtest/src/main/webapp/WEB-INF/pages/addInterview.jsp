@@ -34,6 +34,8 @@
                             }
                         }else {
                             alert("该部门没有对应岗位!");
+                            $("#j_name").append(
+                                "<option >无</option>");
                         }
                     }
                 })

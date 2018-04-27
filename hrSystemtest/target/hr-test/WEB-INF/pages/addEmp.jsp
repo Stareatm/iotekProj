@@ -68,6 +68,7 @@
                 <td><input name="e_baseSal" type="number" min="3000" step="500" value="3000">元/月</td>
                 <td>
                     <input name="e_status" type="hidden" value="0"><%--试用期--%>
+                    <input name="i_id" type="hidden" value="${interview.i_id}">
                     <input type="submit" value="入职">
                 </td>
             </form>

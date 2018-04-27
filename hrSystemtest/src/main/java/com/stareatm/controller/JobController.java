@@ -23,7 +23,7 @@ public class JobController {
     @Resource
     private DeptController deptController;
     @RequestMapping("addJob")
-    public String addJob(String d_name,String j_name,Model model){
+    public String addJob(String d_name,String j_name,Model model)throws Exception{
         Job job1=jobService.getJobByJ_nameD_name(j_name,d_name);//得到j_id
         if(null!=d_name&&null!=j_name&&null==job1){
             Dept dept=new Dept();
@@ -34,13 +34,13 @@ public class JobController {
             job.setDept(dept1);
             job.setJ_name(j_name);//j_name
             jobService.addJobByJ_name(job);
-            try {
-                return deptController.showDept(model);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            return deptController.showDept(model);
         }
         return "addJobFailed";
     }
-
+    @RequestMapping("deleteJob")
+    public String deleteJob(Job job,Model model)throws Exception{
+        jobService.deleteJobByJ_id(job);
+        return deptController.showDept(model);
+    }
 }

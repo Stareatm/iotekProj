@@ -16,7 +16,7 @@
     <base href="<%=basePath%>"/>
     <title>showDept</title>
     <style type="text/css">
-        #plus1,#plus2 {
+        .plus1,.plus2 {
             width: 20px;
             height: 20px;
             background: #535dff;
@@ -24,7 +24,7 @@
             text-align: center;
             line-height: 20px;
         }
-        #minus1,#minus2 {
+        .minus1,.minus2 {
             width: 20px;
             height: 20px;
             background: #ff130e;
@@ -32,23 +32,36 @@
             text-align: center;
             line-height: 20px;
         }
+        .dName,.j_id{
+            display: none;
+        }
+        li{
+            margin-left: 1.5em;
+        }
+        th,td{
+            width: 150px;
+        }
     </style>
     <script type="text/javascript" src="js/jquery-3.1.0.js"></script>
     <script>
         $(function () {
-            $("#plus1").click(function () {
-                $("#addDept").empty();
-                $("#addDept").append("部门名:<input type='text' id='d_name' name='d_name'><br><span id='span1'></span><br><input type='submit' value='添加'>")
+            $(".plus1").click(function () {
+                var div1=$(this).next();
+                var addDept=$(div1).find("form").get(0);
+                $(addDept).empty();
+                $(addDept).append("部门名:<input type='text' id='d_name' name='d_name' style='width:120px'><br><span id='span1'></span><br><input type='submit' value='添加'>")
             });
-            $("#plus2").click(function () {
-                $("#addJob").empty();
-                var d_Name=$("#dName").html();
-                $("#addJob").append("职位名:<input type='text' id='j_name' name='j_name'>" +
+            $(".plus2").click(function () {
+                var div1=$(this).next();
+                var addJob=$(div1).find("form").get(0);
+                var d_Name=$(this).prev().html();
+                $(addJob).empty();
+                $(addJob).append("职位名:<input type='text' id='j_name' name='j_name'style='width:120px'>" +
                     "<br><span id='span2'></span><br>" +
                     "<input type='hidden' name='d_name' value="+d_Name+">" +
                     "<input type='submit' value='添加'>")
             });
-            $("#d_name").bind(function () {
+          /*  $("#d_name").bind(function () {
                 $("#span1").empty();
                 $.ajax({
                     type:"post",
@@ -63,13 +76,24 @@
                         }
                     }
                 })
-            });
-            $("#minus1").click(function () {
-                $("#deleteDept").empty();
-                var d_Name=$("#dName").html();
-                $("#deleteDept").append("<input type='hidden' name='d_name' value="+d_Name+"><br>"+
+            });*/
+
+            $(".minus1").click(function () {
+                var div1=$(this).next();
+                var deleteDept=$(div1).find("form").get(0);
+                var d_Name=$(this).prev().html();
+                $(deleteDept).empty();
+                $(deleteDept).append("<input type='hidden' name='d_name' value="+d_Name+">"+
                 "<input type='submit' value='删除'>")
-            })
+            });
+            $(".minus2").click(function () {
+                var div1=$(this).next();
+                var deleteJob=$(div1).find("form").get(0);
+                var j_id=$(this).prev().html();
+                $(deleteJob).empty();
+                $(deleteJob).append("<input type='hidden' name='j_id' value="+j_id+">"+
+                    "<input type='submit' value='删除'>")
+            });
         })
     </script>
 </head>
@@ -87,65 +111,85 @@
             <c:forEach items="${deptList}" var="dept">
                 <tr>
                     <td>
-                        <div id="dName">
+                        <div class="dName1">
                             ${dept.d_name}
                         </div>
                         <c:if test="${dept.jobList.size()==0}">
-                            <div id="minus1">－</div>
+                            <div class="minus1">
+                                －
+                            </div>
                             <div>
-                                <form id="deleteDept" action="deptController/deleteDept">
+                                <form class="deleteDept" action="deptController/deleteDept">
 
                                 </form>
                             </div>
                         </c:if>
                     </td>
                     <td>
-                        <c:forEach items="${dept.jobList}" var="job">
-                            <a href="#">${job.j_name}</a>
-                            <c:if test="${job.empList.size()==0}">
-                                <div id="minus2">－</div>
+                        <c:forEach items="${dept.jobList}" var="job" varStatus="status">
+                            <c:if test="${null!=job.empList}">
+                                <a href="#" >${job.j_name}</a>
+                            </c:if>
+                            <c:if test="${null==job.empList}">
+                                <div class="jName">
+                                    <a href="#" >${job.j_name}</a>
+                                </div>
+                                <div class="j_id">
+                                    ${job.j_id}
+                                </div>
+                                <div class="minus2">
+                                    －
+                                </div>
                                 <div>
-                                    <form id="deleteJob" action="jobController/deleteJob">
+                                    <form class="deleteJob" action="jobController/deleteJob">
 
                                     </form>
                                 </div>
-                            </c:if><br>
+                            </c:if>
                         </c:forEach>
-
-                        <div id="plus2">＋</div>
+                        <div class="dName">
+                            ${dept.d_name}
+                        </div>
+                        <div class="plus2">
+                            ＋
+                        </div>
                         <div>
-                            <form id="addJob" action="jobController/addJob">
+                            <form class="addJob" action="jobController/addJob">
 
                             </form>
                         </div>
 
-
                     </td>
-                    <td>
+                    <td style="text-align: left;margin-left: 0;padding: 0;">
                         <c:forEach items="${dept.jobList}" var="job">
-                            <ul>
-                                ${job.j_name}:
-                                <c:if test="${job.empList.size()==0}">
-                                    <li>此职位下暂时无人员</li>
+                            <ul style="padding: 0;">${job.j_name}:
+                                <c:if test="${null==job.empList}">
+                                    <li style="font-size: 14px;">此职位下暂时无人员</li>
                                 </c:if>
                                 <c:forEach items="${job.empList}" var="emp">
-                                    <li><a href="#">${emp.e_name}</a><br></li>
+                                    <li><a href="empController/queryEmpInfo?e_id=${emp.e_id}">${emp.e_name}</a><br></li>
                                 </c:forEach>
                             </ul>
                         </c:forEach>
                     </td>
                 </tr>
             </c:forEach>
-            <td>
+            <tr>
+                <td>
+                    <div class="plus1">＋
 
-                <div id="plus1">＋</div>
-                <div>
-                    <form id="addDept" action="deptController/addDept">
+                    </div>
+                    <div>
+                        <form class="addDept" action="deptController/addDept">
 
-                    </form>
-                </div>
+                        </form>
+                    </div>
+                </td>
 
-            </td>
+                <td></td>
+                <td></td>
+            </tr>
+
         </table>
     </c:if>
 

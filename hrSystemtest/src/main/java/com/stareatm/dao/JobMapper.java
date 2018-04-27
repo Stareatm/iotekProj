@@ -15,4 +15,6 @@ public interface JobMapper {
     Job getJobByJ_nameD_name(String j_name, String d_name);
     Job getJob_EmpByJ_id(Job job);//查职位下的员工
     boolean addJobByJ_name(Job job);
+    boolean deleteJobByJ_id(Job job);
+    List<Job> getJobByD_id(Job job);
 }
