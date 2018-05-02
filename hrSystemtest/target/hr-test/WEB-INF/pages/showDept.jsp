@@ -42,6 +42,7 @@
             width: 150px;
         }
     </style>
+
     <script type="text/javascript" src="js/jquery-3.1.0.js"></script>
     <script>
         $(function () {
@@ -158,7 +159,6 @@
 
                             </form>
                         </div>
-
 
                     </td>
                     <td style="text-align: left;margin-left: 0;padding: 0;">

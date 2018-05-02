@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: 刘
-  Date: 2018/4/20
-  Time: 16:25
+  Date: 2018/4/27
+  Time: 19:27
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -16,10 +16,11 @@
     <title></title>
 </head>
 <body>
-    <div>欢迎员工&nbsp;${sessionScope.emp}&nbsp;登录</div>
-    <a href="recruitController/showReceivedRecruit">查看招聘信息</a>
-    <a href="empController/showEmpInfo">查看个人信息</a>
-    <a href="salaryController/showSalary">查看薪资</a>
+    ${regularEmpError}
+    ${LeaveEmpError}
+    ${addTrainingError}
+    ${updateTrainingError}<br>
+    <a href="empController/toPage?choose=adminMain">返回主页</a>
 </body>
 </html>
 

@@ -25,6 +25,12 @@
         WHERE D_NAME=#{d_name}
     </select>
 
+    <select id="getDeptByD_id" resultType="com.stareatm.model.Dept">
+        select D_ID,D_NAME
+        from T_DEPT
+        WHERE D_ID=#{d_id}
+    </select>
+
     <resultMap id="Dept_Job" type="Dept">
         <id property="d_id" column="did"/>
         <result property="d_name" column="dname"/>

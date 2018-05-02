@@ -83,6 +83,14 @@
             <th>部门</th>
             <th>职位</th>
             <th>基本薪资</th>
+            <th>员工状态</th>
+            <c:if test="${emp.e_status==0}">
+                <th>转正</th>
+                <th>离职</th>
+            </c:if>
+            <c:if test="${emp.e_status==1}">
+                <th>离职</th>
+            </c:if>
         </tr>
         <tr>
             <form action="empController/changeEmpJob">
@@ -112,6 +120,41 @@
             <td>
                 <input name="e_baseSal" type="number" value="${emp.e_baseSal}" readonly="readonly">元/月
             </td>
+
+            <td>
+                <c:if test="${emp.e_status==0}">
+                    <div>试用期员工</div>
+                </c:if>
+                <c:if test="${emp.e_status==1}">
+                    <div><a href="empStatusController/showEmpStatus?e_id=${emp.e_id}">正式员工</a></div>
+                </c:if>
+                <c:if test="${emp.e_status==2}">
+                    <div><a href="empStatusController/showEmpStatus">已离职员工</a></div>
+                </c:if>
+            </td>
+
+            <c:if test="${emp.e_status==0}">
+                <td>
+                    <form action="empStatusController/toRegular">
+                        <input type="hidden" name="e_id" value="${emp.e_id}">
+                        <input type="submit" value="转正处理">
+                    </form>
+                </td>
+                <td>
+                    <form action="empStatusController/toLeave">
+                        <input type="hidden" name="e_id" value="${emp.e_id}">
+                        <input type="submit" value="离职处理">
+                    </form>
+                </td>
+            </c:if>
+            <c:if test="${emp.e_status==1}">
+                <td>
+                    <form action="empStatusController/toLeave">
+                        <input type="hidden" name="e_id" value="${emp.e_id}">
+                        <input type="submit" value="离职处理">
+                    </form>
+                </td>
+            </c:if>
         </tr>
     </table>
     <a href="empController/toPage?choose=adminMain">返回>>主菜单</a>

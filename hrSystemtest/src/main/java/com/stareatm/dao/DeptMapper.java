@@ -15,4 +15,6 @@ public interface DeptMapper {
     Dept getDeptByD_name(Dept dept);
     boolean addDept(Dept dept);
     boolean deleteDeptByD_name(Dept dept);
+
+    Dept getDeptByD_id(Dept dept);
 }

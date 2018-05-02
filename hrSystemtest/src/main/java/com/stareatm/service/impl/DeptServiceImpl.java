@@ -39,4 +39,9 @@ public class DeptServiceImpl implements DeptService {
     public boolean deleteDeptByD_name(Dept dept) {
         return deptMapper.deleteDeptByD_name(dept);
     }
+
+    @Override
+    public Dept getDeptByD_id(Dept dept) {
+        return deptMapper.getDeptByD_id(dept);
+    }
 }
