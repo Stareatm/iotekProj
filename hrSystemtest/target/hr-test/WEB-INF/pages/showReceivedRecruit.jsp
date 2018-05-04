@@ -40,17 +40,39 @@
             </tr>
             <c:forEach items="${recruitList}" var="recruit">
             <tr>
-                <td>${recruit.d_name}</td>
-                <td>${recruit.j_name}</td>
-                <td>${recruit.rc_company}</td>
-                <td>${recruit.rc_sal}</td>
-                <td>${recruit.rc_location}</td>
-                <td>${recruit.rc_property}</td>
-                <td>${recruit.rc_scale}</td>
-                <td>${recruit.rc_expTime}</td>
-                <td>${recruit.rc_eduBG}</td>
-                <td>${recruit.rc_sex}</td>
-                <td>${recruit.rc_more}</td>
+                <td>
+                    <input type="text" value=" ${recruit.d_name}" readonly="readonly">
+                </td>
+                <td>
+                    <input type="text" value=" ${recruit.j_name}" readonly="readonly">
+                </td>
+                <td>
+                    <input type="text" value=" ${recruit.rc_company}" readonly="readonly">
+                </td>
+                <td>
+                    <input type="number" value="${recruit.rc_sal}" readonly="readonly">元/月
+                </td>
+                <td>
+                    <input type="text" value="${recruit.rc_location}" readonly="readonly">
+                </td>
+                <td>
+                    <input type="text" value="${recruit.rc_property}" readonly="readonly">
+                </td>
+                <td>
+                    <input type="text" value="${recruit.rc_scale}" readonly="readonly">
+                </td>
+                <td>
+                    <input type="text" value="${recruit.rc_expTime}" readonly="readonly">
+                </td>
+                <td>
+                    <input type="text" value="${recruit.rc_eduBG}" readonly="readonly">
+                </td>
+                <td>
+                    <input type="text" value="${recruit.rc_sex}" readonly="readonly">
+                </td>
+                <td>
+                    <textarea readonly="readonly">${recruit.rc_more}</textarea>
+                </td>
             </tr>
             </c:forEach>
         </table>

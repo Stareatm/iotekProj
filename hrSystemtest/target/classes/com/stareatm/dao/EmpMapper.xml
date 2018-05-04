@@ -43,6 +43,19 @@
         AND e.E_ID=#{e_id}
     </select>
 
+    <select id="getAllEmp" resultType="com.stareatm.model.Emp">
+        select * from T_EMP ORDER BY E_HIREDATE ASC ;
+    </select>
+
+    <select id="getFirstHiredEmp" resultType="com.stareatm.model.Emp">
+        SELECT c.* from(
+            SELECT ROWNUM rn,b.* from(
+                SELECT e.* FROM T_EMP e
+                ORDER BY e.E_HIREDATE ASC
+            )b
+        )c WHERE c.rn=1
+    </select>
+
     <resultMap id="Emp_Job" type="Emp">
         <id property="e_id" column="E_ID"/>
         <result property="e_baseSal" column="E_BASESAL"/>

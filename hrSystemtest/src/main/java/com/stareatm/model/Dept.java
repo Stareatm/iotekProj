@@ -66,11 +66,11 @@ public class Dept implements Serializable {
         return d_id;
     }
 
-    @Override
+ /*   @Override
     public String toString() {
         return "Dept{" +
                 "d_id=" + d_id +
                 ", d_name='" + d_name + '\'' +
                 '}';
-    }
+    }*/
 }

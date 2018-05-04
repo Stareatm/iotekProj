@@ -15,4 +15,6 @@ public interface EmpService {
     Emp getEmpByE_account(Emp emp);
     Emp getEmp_JobByE_id(Emp emp);
     boolean updateEmp(Emp emp);
+    List<Emp> getAllEmp();
+    Emp getFirstHiredEmp();
 }

@@ -14,9 +14,29 @@
 <head>
     <base href="<%=basePath%>"/>
     <title></title>
+    <style type="text/css">
+        #button{
+            background-color: deeppink;
+        }
+    </style>
+    <script type="text/javascript" src="js/jquery-3.1.0.js"></script>
+    <script>
+        $(function () {
+            $("#button").click(function () {
+                $.ajax({
+                    type:"post",
+                    url:"attendanceController/addOrUpdateAttendance",
+                    success:function (obj) {
+                        alert(obj);
+                    }
+                })
+            });
+        })
+    </script>
 </head>
 <body>
     <div>欢迎员工&nbsp;${sessionScope.emp}&nbsp;登录</div>
+    <div><input type="button" value="打卡" id="button"></div>
     <a href="recruitController/showReceivedRecruit">查看招聘信息</a>
     <a href="empController/showEmpInfo">查看个人信息</a>
     <a href="salaryController/showSalary">查看薪资</a>

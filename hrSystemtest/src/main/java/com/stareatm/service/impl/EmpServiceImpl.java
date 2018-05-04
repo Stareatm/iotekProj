@@ -49,4 +49,14 @@ public class EmpServiceImpl implements EmpService {
     public boolean updateEmp(Emp emp) {
         return empMapper.updateEmp(emp);
     }
+
+    @Override
+    public List<Emp> getAllEmp() {
+        return empMapper.getAllEmp();
+    }
+
+    @Override
+    public Emp getFirstHiredEmp() {
+        return empMapper.getFirstHiredEmp();
+    }
 }

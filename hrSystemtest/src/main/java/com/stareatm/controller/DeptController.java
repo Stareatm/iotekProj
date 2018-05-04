@@ -65,7 +65,8 @@ public class DeptController {
             deptService.addDept(dept);
             return showDept(model);
         }
-        return "addDeptFailed";
+        model.addAttribute("addDeptError","部门名重复,部门添加失败!");
+        return "adminError";
     }
 
     @RequestMapping("ajaxFindDept")

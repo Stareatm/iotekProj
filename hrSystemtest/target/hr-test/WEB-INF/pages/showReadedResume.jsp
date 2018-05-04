@@ -43,24 +43,47 @@
             </tr>
             <c:forEach items="${resumeList}" var="resume">
                 <tr>
-                    <td>${resume.rs_name}</td>
                     <td>
-                            ${resume.rs_sex}
+                        <input type="text" value="${resume.rs_name}" readonly="readonly">
                     </td>
-                    <td>${resume.rs_IDNumber}</td>
+                    <td>
+                        <input type="text" value="${resume.rs_sex}" readonly="readonly">
+                    </td>
+                    <td>
+                        <input type="text" value="${resume.rs_IDNumber}" readonly="readonly">
+                    </td>
                     <td>
                         <fmt:formatDate value="${resume.rs_birthday}" pattern="yyyy-MM-dd" type="date" var="birthday"/>
                         <input type="date" value="${birthday}" readonly="readonly">
                     </td>
-                    <td>${resume.rs_residence}</td>
-                    <td>${resume.rs_addr}</td>
-                    <td>${resume.rs_expTime}</td>
-                    <td>${resume.rs_phone}</td>
-                    <td>${resume.rs_email}</td>
-                    <td>${resume.rs_desiredPosition}</td>
-                    <td>${resume.rs_desiredLocation}</td>
-                    <td>${resume.rs_expectedSal}元/月</td>
-                    <td><textarea name="rs_careerExp" readonly="readonly">${resume.rs_careerExp}</textarea></td>
+                    <td>
+                        <input type="text" value="${resume.rs_IDNumber}" readonly="readonly">    ${resume.rs_residence}
+                    </td>
+                    <td>
+                        <input type="text" value="${resume.rs_addr}" readonly="readonly">
+                    </td>
+                    <td>
+                        <input type="text" value="${resume.rs_expTime}" readonly="readonly">
+                    </td>
+                    <td>
+                        <input type="text" value="${resume.rs_phone}" readonly="readonly">
+                    </td>
+                    <td>
+                        <input type="text" value="${resume.rs_email}" readonly="readonly">
+                    </td>
+                    <td>
+                        <input type="text" value="${resume.rs_desiredPosition}" readonly="readonly">
+                    </td>
+                    <td>
+                        <input type="text" value="${resume.rs_desiredLocation}" readonly="readonly">
+                    </td>
+                    <td>
+                        <input type="text" value=" ${resume.rs_expectedSal}" readonly="readonly">元/月
+                    </td>
+                    <td>
+                        <textarea name="rs_careerExp" readonly="readonly">
+                                ${resume.rs_careerExp}</textarea>
+                    </td>
                     <td>
                         <c:if test="${null!=resume.interview}">
                             <c:if test="${resume.interview.i_status==0}">

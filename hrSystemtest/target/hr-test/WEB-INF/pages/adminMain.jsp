@@ -24,6 +24,8 @@
     <a href="interviewController/showConfirmedInterview">已确认的面试</a>
     <a href="deptController/showDept">部门管理</a>
     <a href="trainingController/showTraining">培训管理</a>
+    <a href="">奖惩记录</a>
+    <a href="salaryController/showAllSalary">薪资结算</a>
 </body>
 </html>
 

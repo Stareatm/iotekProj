@@ -30,19 +30,25 @@
         </tr>
         <c:forEach items="${interviewList}" var="interview">
             <tr>
-                <td>${interview.resume.rs_name}</td>
-                <td>${interview.resume.rs_phone}</td>
                 <td>
-                    <input value="${interview.d_name}" readonly="readonly">
+                    <input type="text" value="${interview.resume.rs_name}" readonly="readonly">
                 </td>
                 <td>
-                    <input value=" ${interview.j_name}" readonly="readonly">
+                    <input type="text" value="${interview.resume.rs_phone}" readonly="readonly">
+                </td>
+                <td>
+                    <input type="text" value="${interview.d_name}" readonly="readonly">
+                </td>
+                <td>
+                    <input type="text" value=" ${interview.j_name}" readonly="readonly">
                 </td>
                 <td>
                     <fmt:formatDate value="${interview.i_time}" pattern="yyyy-MM-dd HH:mm" var="iTime"/>
                     <input type="datetime" value="${iTime}" readonly="readonly">
                 </td>
-                <td>${interview.i_addr}</td>
+                <td>
+                    <input type="text" value="${interview.i_addr}" readonly="readonly">
+                </td>
                 <td>
                     <form action="interviewController/confirmInterview">
                         <input type="hidden" name="i_id" value="${interview.i_id}">

@@ -19,7 +19,8 @@
     ${regularEmpError}
     ${LeaveEmpError}
     ${addTrainingError}
-    ${updateTrainingError}<br>
+    ${updateTrainingError}
+    ${addDeptError}<br>
     <a href="empController/toPage?choose=adminMain">返回主页</a>
 </body>
 </html>

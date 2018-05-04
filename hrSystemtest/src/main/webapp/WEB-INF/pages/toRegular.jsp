@@ -38,7 +38,7 @@
                     <input name="changeDate" type="date" value="${nowDate}" readonly="readonly">
                 </td>
                 <td>
-                    <textarea name="es_reasons"></textarea>
+                    <textarea name="es_reasons" required="required"></textarea>
                 </td>
                 <td>
                     <input name="e_status" type="hidden" value="1">

@@ -4,9 +4,9 @@
     <root id="1"/>
     <schema id="2" parent="1" name="SCOTT">
       <ObjectId>48</ObjectId>
-      <IntrospectionTimestamp>2018-05-02.02:50:40</IntrospectionTimestamp>
+      <IntrospectionTimestamp>2018-05-02.19:21:19</IntrospectionTimestamp>
       <CreatedTimestamp>2018-04-13.19:06:57</CreatedTimestamp>
-      <ModifiedTimestamp>2018-05-02.02:50:40</ModifiedTimestamp>
+      <ModifiedTimestamp>2018-05-02.19:21:17</ModifiedTimestamp>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -208,13 +208,13 @@
     <table id="42" parent="2" name="T_SALARY">
       <ObjectId>20208</ObjectId>
       <CreatedTimestamp>2018-04-20.15:10:01</CreatedTimestamp>
-      <ModifiedTimestamp>2018-05-02.02:50:40</ModifiedTimestamp>
+      <ModifiedTimestamp>2018-05-02.19:21:17</ModifiedTimestamp>
       <TemporaryPreserve>1</TemporaryPreserve>
     </table>
     <table id="43" parent="2" name="T_TRAINING">
       <ObjectId>20212</ObjectId>
       <CreatedTimestamp>2018-04-20.15:14:47</CreatedTimestamp>
-      <ModifiedTimestamp>2018-05-01.16:03:09</ModifiedTimestamp>
+      <ModifiedTimestamp>2018-05-02.15:28:18</ModifiedTimestamp>
       <TemporaryPreserve>1</TemporaryPreserve>
     </table>
     <table id="44" parent="2" name="T_USER">
@@ -835,9 +835,18 @@
     </column>
     <column id="161" parent="42" name="S_RPSAL">
       <Position>8</Position>
-      <DataType>NUMBER(*)|0</DataType>
+      <DataType>NUMBER(8)|0</DataType>
+      <DefaultExpression>NULL</DefaultExpression>
     </column>
-    <index id="162" parent="42" name="SYS_C007030">
+    <column id="162" parent="42" name="S_STATUS">
+      <Position>9</Position>
+      <DataType>NUMBER(1)|0</DataType>
+    </column>
+    <column id="163" parent="42" name="S_BASESAL">
+      <Position>10</Position>
+      <DataType>NUMBER(8)|0</DataType>
+    </column>
+    <index id="164" parent="42" name="SYS_C007030">
       <ObjectId>20209</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2018-04-20.15:10:01</CreatedTimestamp>
@@ -846,7 +855,7 @@
       <ColNames>S_ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="163" parent="42" name="SYS_C007030">
+    <key id="165" parent="42" name="SYS_C007030">
       <NameSurrogate>1</NameSurrogate>
       <ModifiedTimestamp>2018-04-20.15:10:01</ModifiedTimestamp>
       <ColNames>S_ID</ColNames>
@@ -854,40 +863,44 @@
       <UnderlyingIndexName>SYS_C007030</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <trigger id="164" parent="42" name="SALARYTRIGGER_INSERT">
+    <trigger id="166" parent="42" name="SALARYTRIGGER_INSERT">
       <ObjectId>20236</ObjectId>
       <CreatedTimestamp>2018-04-20.17:54:08</CreatedTimestamp>
       <ModifiedTimestamp>2018-04-20.17:54:08</ModifiedTimestamp>
       <Events>I</Events>
       <Turn>before-row</Turn>
     </trigger>
-    <column id="165" parent="43" name="T_ID">
+    <column id="167" parent="43" name="T_ID">
       <Position>1</Position>
       <DataType>NUMBER(8)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="166" parent="43" name="T_THEME">
+    <column id="168" parent="43" name="T_THEME">
       <Position>2</Position>
       <DataType>VARCHAR2(200)|0</DataType>
       <DefaultExpression>NULL</DefaultExpression>
     </column>
-    <column id="167" parent="43" name="T_BEGINTIME">
+    <column id="169" parent="43" name="T_BEGINTIME">
       <Position>3</Position>
       <DataType>DATE|0</DataType>
     </column>
-    <column id="168" parent="43" name="T_CONTENT">
+    <column id="170" parent="43" name="T_CONTENT">
       <Position>4</Position>
       <DataType>VARCHAR2(400)|0</DataType>
     </column>
-    <column id="169" parent="43" name="T_ADDR">
+    <column id="171" parent="43" name="T_ADDR">
       <Position>5</Position>
       <DataType>VARCHAR2(200)|0</DataType>
     </column>
-    <column id="170" parent="43" name="D_ID">
+    <column id="172" parent="43" name="D_ID">
       <Position>6</Position>
       <DataType>NUMBER(8)|0</DataType>
     </column>
-    <index id="171" parent="43" name="SYS_C007032">
+    <column id="173" parent="43" name="T_ENDTIME">
+      <Position>7</Position>
+      <DataType>DATE|0</DataType>
+    </column>
+    <index id="174" parent="43" name="SYS_C007032">
       <ObjectId>20213</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2018-04-20.15:14:47</CreatedTimestamp>
@@ -896,7 +909,7 @@
       <ColNames>T_ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="172" parent="43" name="SYS_C007032">
+    <key id="175" parent="43" name="SYS_C007032">
       <NameSurrogate>1</NameSurrogate>
       <ModifiedTimestamp>2018-04-20.15:14:47</ModifiedTimestamp>
       <ColNames>T_ID</ColNames>
@@ -904,31 +917,31 @@
       <UnderlyingIndexName>SYS_C007032</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <trigger id="173" parent="43" name="TRAININGTRIGGER_INSERT">
+    <trigger id="176" parent="43" name="TRAININGTRIGGER_INSERT">
       <ObjectId>20237</ObjectId>
       <CreatedTimestamp>2018-04-20.17:56:34</CreatedTimestamp>
       <ModifiedTimestamp>2018-04-20.17:56:34</ModifiedTimestamp>
       <Events>I</Events>
       <Turn>before-row</Turn>
     </trigger>
-    <column id="174" parent="44" name="U_ID">
+    <column id="177" parent="44" name="U_ID">
       <Position>1</Position>
       <DataType>NUMBER(*)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="175" parent="44" name="U_NAME">
+    <column id="178" parent="44" name="U_NAME">
       <Position>2</Position>
       <DataType>VARCHAR2(20)|0</DataType>
     </column>
-    <column id="176" parent="44" name="U_PASS">
+    <column id="179" parent="44" name="U_PASS">
       <Position>3</Position>
       <DataType>VARCHAR2(20)|0</DataType>
     </column>
-    <column id="177" parent="44" name="U_TYPE">
+    <column id="180" parent="44" name="U_TYPE">
       <Position>4</Position>
       <DataType>NUMBER(*)|0</DataType>
     </column>
-    <index id="178" parent="44" name="SYS_C007023">
+    <index id="181" parent="44" name="SYS_C007023">
       <ObjectId>20195</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CreatedTimestamp>2018-04-20.07:00:51</CreatedTimestamp>
@@ -937,7 +950,7 @@
       <ColNames>U_ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="179" parent="44" name="SYS_C007023">
+    <key id="182" parent="44" name="SYS_C007023">
       <NameSurrogate>1</NameSurrogate>
       <ModifiedTimestamp>2018-04-20.07:00:51</ModifiedTimestamp>
       <ColNames>U_ID</ColNames>
@@ -945,24 +958,24 @@
       <UnderlyingIndexName>SYS_C007023</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <trigger id="180" parent="44" name="USERTRIGGER_INSERT">
+    <trigger id="183" parent="44" name="USERTRIGGER_INSERT">
       <ObjectId>20227</ObjectId>
       <CreatedTimestamp>2018-04-20.17:16:13</CreatedTimestamp>
       <ModifiedTimestamp>2018-04-20.17:34:11</ModifiedTimestamp>
       <Events>I</Events>
       <Turn>before-row</Turn>
     </trigger>
-    <argument id="181" parent="45">
+    <argument id="184" parent="45">
       <ArgumentDirection>R</ArgumentDirection>
       <DataType>NUMBER|0</DataType>
     </argument>
-    <argument id="182" parent="45" name="PEMPNO">
+    <argument id="185" parent="45" name="PEMPNO">
       <DataType>NUMBER|0</DataType>
     </argument>
-    <argument id="183" parent="46" name="PEMPNO">
+    <argument id="186" parent="46" name="PEMPNO">
       <DataType>NUMBER|0</DataType>
     </argument>
-    <argument id="184" parent="46" name="PSAL">
+    <argument id="187" parent="46" name="PSAL">
       <ArgumentDirection>O</ArgumentDirection>
       <DataType>NUMBER|0</DataType>
     </argument>

@@ -2,6 +2,7 @@ package com.stareatm.controller;
 
 import com.stareatm.model.*;
 import com.stareatm.service.*;
+import org.junit.experimental.theories.FromDataPoints;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +31,8 @@ public class EmpController {
     private EmpService empService;
     @Resource
     private UserService userService;
+    @Resource
+    private AttendanceService attendanceService;
     @RequestMapping("toAddEmp")
     public String toAddEmp(Interview interview,Model model)throws Exception{
         Interview interview1=interviewService.getInterview_Rs(interview);
@@ -92,9 +95,10 @@ public class EmpController {
         }
     }
     @RequestMapping("empLogin")
-    public String empLogin(Emp emp,HttpSession session) throws Exception{
+    public String empLogin(Emp emp,HttpSession session,Model model) throws Exception{
         Emp emp1=empService.login(emp);
         if(null!=emp1){
+            //登录成功
             session.setAttribute("emp",emp1);
             return "empMain";
         }
@@ -126,11 +130,9 @@ public class EmpController {
     public String changeEmpJob(Emp emp,String j_name,String d_name,Model model)throws Exception{
         Emp emp1=empService.getEmp_JobByE_id(emp);//获得emp
         Job job=jobService.getJobByJ_nameD_name(j_name,d_name);
-        System.out.println(">>>111>>"+j_name);
-        System.out.println(">>>222>>"+d_name);
-        System.out.println(">>>333>>"+job);
         emp1.setJob(job);//改j_id
         empService.updateEmp(emp1);
         return queryEmpInfo(emp1,model);
     }
+
 }

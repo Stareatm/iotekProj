@@ -30,28 +30,28 @@
             <th>修改</th>
         </tr>
         <tr>
-            <form action="empController/addEmp">
+            <form action="empController/updateEmp">
                 <td>
                     <input name="e_name" type="text" value="${sessionScope.emp.e_name}" readonly="readonly">
                 </td>
                 <td>
-                    <input name="e_sex" type="text" value="${sessionScope.emp.e_sex}">
+                    <input name="e_sex" type="text" value="${sessionScope.emp.e_sex}" required="required">
                 </td>
                 <td>
                     <input name="e_IDNumber" type="text" value="${sessionScope.emp.e_IDNumber}" readonly="readonly">
                 </td>
                 <td>
-                    <input name="e_phone" type="text" value="${sessionScope.emp.e_phone}">
+                    <input name="e_phone" type="text" value="${sessionScope.emp.e_phone}" required="required">
                 </td>
                 <td>
                     <fmt:formatDate value="${sessionScope.emp.e_birthday}" pattern="yyyy-MM-dd" var="birthday"/>
-                    <input name="eBirthday" type="date" value="${birthday}">
+                    <input name="eBirthday" type="date" value="${birthday}" required="required">
                 </td>
                 <td>
-                    <input name="e_email" type="text" value="${sessionScope.emp.e_email}">
+                    <input name="e_email" type="text" value="${sessionScope.emp.e_email}" required="required">
                 </td>
                 <td>
-                    <input name="e_addr" type="text" value="${sessionScope.emp.e_addr}">
+                    <input name="e_addr" type="text" value="${sessionScope.emp.e_addr}" required="required">
                 </td>
 
                 <td>
