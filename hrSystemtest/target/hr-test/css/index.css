@@ -1,0 +1,12 @@
+body{
+    background-image: url("/image/login.jpg");
+    background-size: 100% 100%;
+}
+.content{
+    width: 400px;
+    height:300px;
+    position: relative;
+    top: 250px;
+    left:680px;
+    text-align: center;
+}

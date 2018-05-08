@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.stareatm.dao.AttendanceMapper">
+    <insert id="addAttendance">
+        INSERT INTO T_ATTENDANCE(E_ID,AT_STARTTIME)
+        VALUES (#{emp.e_id},#{at_startTime})
+    </insert>
+
+    <update id="updateAttendance">
+        UPDATE T_ATTENDANCE
+        SET AT_STARTTIME=#{at_startTime},at_endTime=#{at_endTime}
+        where at_id=#{at_id}
+    </update>
+
+    <select id="getAttendanceByE_id" resultMap="Attendance_Emp">
+        SELECT e.*,att.AT_ID,att.AT_STARTTIME,att.AT_ENDTIME
+        FROM T_ATTENDANCE att,T_EMP e
+        WHERE att.E_ID=e.E_ID
+        AND att.E_ID=#{emp.e_id}
+    </select>
+
+    <select id="getAttendanceByE_idAt_endTime" resultType="com.stareatm.model.Attendance">
+        SELECT e.*,att.AT_ID,att.AT_STARTTIME,att.AT_ENDTIME
+        FROM T_ATTENDANCE att,T_EMP e
+        WHERE att.E_ID=e.E_ID
+        AND att.E_ID=#{emp.e_id}
+        and att.at_endTime is not null
+    </select>
+
+    <resultMap id="Attendance_Emp" type="Attendance">
+        <id property="at_id" column="AT_ID"/>
+        <result property="at_startTime" column="AT_STARTTIME"/>
+        <result property="at_endTime" column="AT_ENDTIME"/>
+        <association property="emp" javaType="Emp">
+            <id property="e_id" column="E_ID"/>
+            <result property="e_baseSal" column="E_BASESAL"/>
+            <result property="e_hireDate" column="E_HIREDATE"/>
+            <result property="e_status" column="E_STATUS"/>
+            <result property="e_name" column="E_NAME"/>
+            <result property="e_sex" column="E_SEX"/>
+            <result property="e_IDNumber" column="E_IDNUMBER"/>
+            <result property="e_phone" column="E_PHONE"/>
+            <result property="e_addr" column="E_ADDR"/>
+            <result property="e_birthday" column="E_BIRTHDAY"/>
+            <result property="e_email" column="E_EMAIL"/>
+            <result property="e_account" column="E_ACCOUNT"/>
+            <result property="e_pass" column="E_PASS"/>
+        </association>
+    </resultMap>
+</mapper>

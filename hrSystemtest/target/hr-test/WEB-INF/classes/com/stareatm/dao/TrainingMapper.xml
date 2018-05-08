@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.stareatm.dao.TrainingMapper">
+    <insert id="addTraining">
+        INSERT INTO T_TRAINING(T_THEME,T_BEGINTIME,T_ENDTIME,T_CONTENT,T_ADDR,D_ID)
+        VALUES (#{t_theme},#{t_beginTime},#{t_endTime},#{t_content},#{t_addr},#{dept.d_id})
+    </insert>
+
+    <update id="updateTraining">
+        UPDATE T_TRAINING SET T_THEME=#{t_theme},t_beginTime=#{t_beginTime},
+        t_endTime=#{t_endTime},t_content=#{t_content},t_addr=#{t_addr},d_id=#{dept.d_id}
+        WHERE t_id=#{t_id}
+    </update>
+
+    <delete id="deleteTraining">
+        DELETE FROM T_TRAINING WHERE T_ID=#{t_id}
+    </delete>
+
+    <select id="getTrainingByD_id" resultMap="Training_Dept">
+        SELECT t.*,d.D_NAME FROM T_TRAINING t,T_DEPT d
+        WHERE t.D_ID=d.D_ID
+        AND t.D_ID=#{dept.d_id}
+    </select>
+
+    <select id="getTrainingByT_id" resultMap="Training_Dept">
+        SELECT t.*,d.D_NAME FROM T_TRAINING t,T_DEPT d
+        WHERE t.D_ID=d.D_ID
+        AND t.T_ID=#{t_id}
+    </select>
+
+    <select id="getAllTraining" resultMap="Training_Dept">
+        SELECT t.*,d.D_NAME FROM T_TRAINING t,T_DEPT d
+        WHERE t.D_ID=d.D_ID
+        ORDER BY t.D_ID
+    </select>
+
+    <resultMap id="Training_Dept" type="Training">
+        <id property="t_id" column="T_ID"/>
+        <result property="t_theme" column="T_THEME"/>
+        <result property="t_beginTime" column="T_BEGINTIME"/>
+        <result property="t_endTime" column="T_ENDTIME"/>
+        <result property="t_content" column="T_CONTENT"/>
+        <result property="t_addr" column="T_ADDR"/>
+        <association property="dept" javaType="Dept">
+            <id property="d_id" column="D_ID"/>
+            <result property="d_name" column="D_NAME"/>
+        </association>
+    </resultMap>
+</mapper>

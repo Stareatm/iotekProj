@@ -1,0 +1,13 @@
+/*body{
+    position: relative;
+}*/
+#toMain{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+#toReadedResume{
+    position: absolute;
+    top:10px;
+    left: 100px;
+}

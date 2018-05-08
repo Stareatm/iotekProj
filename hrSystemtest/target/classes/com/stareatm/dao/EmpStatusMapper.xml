@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.stareatm.dao.EmpStatusMapper">
+    <insert id="addEmpStatus">
+        INSERT INTO T_EMPSTATUS(E_ID,E_STATUS,ES_REASONS,ES_CHANGEDATE)
+        VALUES (#{e_id},#{e_status},#{es_reasons},#{es_changeDate})
+    </insert>
+    <select id="getEmpStatusByE_id" resultType="com.stareatm.model.EmpStatus">
+        SELECT * FROM T_EMPSTATUS WHERE E_ID=#{e_id}
+    </select>
+    <select id="getEmpStatusByE_idE_status" resultType="com.stareatm.model.EmpStatus">
+        SELECT * FROM T_EMPSTATUS
+        WHERE E_ID=#{e_id}
+        and e_status=#{e_status}
+    </select>
+</mapper>

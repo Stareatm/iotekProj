@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.stareatm.dao.SalaryMapper">
+    <insert id="addSalary">
+        INSERT INTO T_SALARY(E_ID,S_BASESAL,S_PERFORMANCE,S_RPSAL,S_SOCIALSECURITY,S_TOTALSAL,S_TIME,S_STATUS)
+        VALUES (#{emp.e_id},#{s_baseSal},#{s_performance},#{s_rpSal},#{s_socialSecurity},#{s_totalSal},#{s_time},#{s_status})
+    </insert>
+
+    <update id="updateSalary">
+        UPDATE T_SALARY SET S_BASESAL=#{s_baseSal},s_performance=#{s_performance},s_rpSal=#{s_rpSal},
+                s_socialSecurity=#{s_socialSecurity},s_totalSal=#{s_totalSal},s_time=#{s_time},s_status=#{s_status}
+        WHERE s_id=#{s_id}
+    </update>
+
+    <select id="getSalaryByE_id" resultMap="Salary_Emp">
+        SELECT e.*,s.S_ID,s.S_PERFORMANCE,s.S_BASESAL,S_RPSAL,
+                s.S_SOCIALSECURITY,s.S_TOTALSAL,s.S_TIME,s.S_STATUS
+         FROM T_SALARY s,T_EMP e
+        WHERE s.E_ID=e.E_ID
+        AND s.E_ID=#{emp.e_id}
+    </select>
+
+    <select id="getSalaryByS_id" resultMap="Salary_Emp">
+        SELECT e.*,s.S_ID,s.S_PERFORMANCE,s.S_BASESAL,S_RPSAL,
+                s.S_SOCIALSECURITY,s.S_TOTALSAL,s.S_TIME,s.S_STATUS
+        FROM T_SALARY s,T_EMP e
+        WHERE s.E_ID=e.E_ID
+        AND s.S_ID=#{s_id}
+    </select>
+
+    <select id="getSalaryByDate" resultMap="Salary_Emp">
+        SELECT e.*,s.S_ID,s.S_PERFORMANCE,s.S_BASESAL,S_RPSAL,
+                s.S_SOCIALSECURITY,s.S_TOTALSAL,s.S_TIME,s.S_STATUS
+        FROM T_SALARY s,T_EMP e
+        WHERE s.E_ID=e.E_ID
+        AND to_char(add_months(s.s_time,-1),'yyyy-MM')=#{selectedTime}
+    </select>
+
+    <select id="getAllSalary" resultMap="Salary_Emp">
+        SELECT e.*,s.S_ID,s.S_PERFORMANCE,s.S_BASESAL,S_RPSAL,
+                s.S_SOCIALSECURITY,s.S_TOTALSAL,s.S_TIME,s.S_STATUS
+        FROM T_SALARY s,T_EMP e
+        WHERE s.E_ID=e.E_ID
+    </select>
+
+    <select id="getSalaryByS_status" resultMap="Salary_Emp">
+        SELECT e.*,s.S_ID,s.S_PERFORMANCE,s.S_BASESAL,S_RPSAL,
+                s.S_SOCIALSECURITY,s.S_TOTALSAL,s.S_TIME,s.S_STATUS
+        FROM T_SALARY s,T_EMP e
+        WHERE s.E_ID=e.E_ID
+        AND s.S_STATUS=#{s_status}
+    </select>
+
+    <resultMap id="Salary_Emp" type="Salary">
+        <id property="s_id" column="S_ID"/>
+        <result property="s_performance" column="S_PERFORMANCE"/>
+        <result property="s_socialSecurity" column="S_SOCIALSECURITY"/>
+        <result property="s_totalSal" column="S_TOTALSAL"/>
+        <result property="s_time" column="S_TIME"/>
+        <result property="s_rpSal" column="S_RPSAL"/>
+        <result property="s_status" column="S_STATUS"/>
+        <result property="s_baseSal" column="S_BASESAL"/>
+        <association property="emp" javaType="Emp">
+            <id property="e_id" column="E_ID"/>
+            <result property="e_baseSal" column="E_BASESAL"/>
+            <result property="e_hireDate" column="E_HIREDATE"/>
+            <result property="e_status" column="E_STATUS"/>
+            <result property="e_name" column="E_NAME"/>
+            <result property="e_sex" column="E_SEX"/>
+            <result property="e_IDNumber" column="E_IDNUMBER"/>
+            <result property="e_phone" column="E_PHONE"/>
+            <result property="e_addr" column="E_ADDR"/>
+            <result property="e_birthday" column="E_BIRTHDAY"/>
+            <result property="e_email" column="E_EMAIL"/>
+            <result property="e_account" column="E_ACCOUNT"/>
+            <result property="e_pass" column="E_PASS"/>
+        </association>
+    </resultMap>
+</mapper>
