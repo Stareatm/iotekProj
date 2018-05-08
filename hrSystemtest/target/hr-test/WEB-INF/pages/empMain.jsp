@@ -40,6 +40,8 @@
     <a href="recruitController/showReceivedRecruit">查看招聘信息</a>
     <a href="empController/showEmpInfo">查看个人信息</a>
     <a href="salaryController/showSalary">查看薪资</a>
+    <a href="rewordPunishController/showRP">查看奖惩记录</a>
+    <a href="attendanceController/showAttendance">查看考情</a>
 </body>
 </html>
 

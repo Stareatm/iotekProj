@@ -6,11 +6,18 @@
 <html>
 <head>
     <base href="<%=basePath%>"/>
-    <title></title>
+    <title>index</title>
+    <link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
 <body>
-    <a href="userController/toPage?choose=login">LOGIN</a><br>
-    <a href="userController/toPage?choose=register">REGISTER</a>
+    <div class="content">
+        <p>
+            <a href="userController/toPage?choose=login">LOGIN</a>
+        </p>
+        <p>
+            <a href="userController/toPage?choose=register">REGISTER</a>
+        </p>
+    </div>
 </body>
 </html>
 

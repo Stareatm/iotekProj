@@ -9,6 +9,6 @@ import java.util.List;
  */
 public interface EmpStatusService {
     boolean addEmpStatus(EmpStatus empStatus);
-
     List<EmpStatus> getEmpStatusByE_id(EmpStatus empStatus);
+    EmpStatus getEmpStatusByE_idE_status(EmpStatus empStatus);
 }

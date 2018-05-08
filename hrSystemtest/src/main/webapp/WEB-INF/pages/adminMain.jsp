@@ -13,19 +13,41 @@
 <html>
 <head>
     <base href="<%=basePath%>"/>
-    <title></title>
+    <title>adminMain</title>
+    <link rel="stylesheet" type="text/css" href="../../css/main.css">
 </head>
 <body>
-    <div>欢迎管理员&nbsp;${sessionScope.user}&nbsp;登录!</div>
-    <a href="recruitController/showRecruit">招聘信息管理</a>
-    <a href="resumeController/showUnReadResume">未读简历</a>
-    <a href="resumeController/showReadedResume">已读简历</a>
-    <a href="interviewController/showSentInterview">未确认的面试邀请</a>
-    <a href="interviewController/showConfirmedInterview">已确认的面试</a>
-    <a href="deptController/showDept">部门管理</a>
-    <a href="trainingController/showTraining">培训管理</a>
-    <a href="">奖惩记录</a>
-    <a href="salaryController/showAllSalary">薪资结算</a>
+    <div class="content">
+        <ul>
+            <li>
+                <a href="recruitController/showRecruit">招聘信息管理</a>
+            </li>
+            <li>
+                <a href="resumeController/showUnReadResume">未读简历</a>
+            </li>
+            <li>
+                <a href="resumeController/showReadedResume">已读简历</a>
+            </li>
+            <li>
+                <a href="interviewController/showSentInterview">未确认的面试邀请</a>
+            </li>
+            <li>
+                <a href="interviewController/showConfirmedInterview">已确认的面试</a>
+            </li>
+            <li>
+                <a href="deptController/showDept">部门及人员管理</a>
+            </li>
+            <li>
+                <a href="trainingController/showTraining">培训管理</a>
+            </li>
+            <li>
+                <a href="salaryController/showAllSalary">薪资结算</a>
+            </li>
+            <li>
+                <a href="salaryController/querySalaryReconsider">查看薪资复议</a>
+            </li>
+        </ul>
+    </div>
 </body>
 </html>
 

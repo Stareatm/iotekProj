@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.stareatm.dao.RewordPunishMapper">
+    <insert id="addRP">
+        INSERT INTO T_REWORD_PUNISH(E_ID,RP_TIME,RP_REASON,RP_RPSAL)
+        VALUES (#{emp.e_id},#{rp_time},#{rp_reason},#{rp_rpSal})
+    </insert>
+
+    <update id="updateRP">
+        UPDATE T_REWORD_PUNISH
+        SET RP_TIME=#{rp_time},rp_reason=#{rp_reason},rp_rpSal=#{rp_rpSal}
+        WHERE rp_id=#{rp_id}
+    </update>
+
+    <delete id="deleteRP">
+        DELETE
+        FROM T_REWORD_PUNISH
+        WHERE RP_ID=#{rp_id}
+    </delete>
+
+    <select id="getAllRewordPunishByE_id" resultMap="RP_Emp">
+        SELECT e.*,rp.RP_ID,rp.RP_TIME,rp.RP_REASON,rp.RP_RPSAL
+        FROM T_REWORD_PUNISH rp,T_EMP e
+        WHERE rp.E_ID=e.E_ID
+        AND rp.E_ID=#{emp.e_id}
+    </select>
+
+    <select id="geRewordPunishByRp_id" resultMap="RP_Emp">
+        SELECT e.*,rp.RP_ID,rp.RP_TIME,rp.RP_REASON,rp.RP_RPSAL
+        FROM T_REWORD_PUNISH rp,T_EMP e
+        WHERE rp.E_ID=e.E_ID
+        AND rp.RP_ID=#{rp_id}
+    </select>
+
+    <resultMap id="RP_Emp" type="RewordPunish">
+        <id property="rp_id" column="RP_ID"/>
+        <result property="rp_time" column="RP_TIME"/>
+        <result property="rp_reason" column="RP_REASON"/>
+        <result property="rp_rpSal" column="RP_RPSAL"/>
+        <association property="emp" javaType="Emp">
+            <id property="e_id" column="E_ID"/>
+            <result property="e_baseSal" column="E_BASESAL"/>
+            <result property="e_hireDate" column="E_HIREDATE"/>
+            <result property="e_status" column="E_STATUS"/>
+            <result property="e_name" column="E_NAME"/>
+            <result property="e_sex" column="E_SEX"/>
+            <result property="e_IDNumber" column="E_IDNUMBER"/>
+            <result property="e_phone" column="E_PHONE"/>
+            <result property="e_addr" column="E_ADDR"/>
+            <result property="e_birthday" column="E_BIRTHDAY"/>
+            <result property="e_email" column="E_EMAIL"/>
+            <result property="e_account" column="E_ACCOUNT"/>
+            <result property="e_pass" column="E_PASS"/>
+        </association>
+    </resultMap>
+</mapper>

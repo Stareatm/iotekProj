@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface EmpStatusMapper {
     boolean addEmpStatus(EmpStatus empStatus);
-
     List<EmpStatus> getEmpStatusByE_id(EmpStatus empStatus);
+    EmpStatus getEmpStatusByE_idE_status(EmpStatus empStatus);
 }

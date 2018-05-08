@@ -11,7 +11,7 @@
     </update>
 
     <update id="updateEmp">
-      UPDATE T_EMP SET J_ID=#{job.j_id},e_baseSal=#{e_baseSal},e_hireDate=#{e_hireDate},e_status=#{e_status},
+        UPDATE T_EMP SET J_ID=#{job.j_id},e_baseSal=#{e_baseSal},e_hireDate=#{e_hireDate},e_status=#{e_status},
         e_name=#{e_name},e_sex=#{e_sex},e_IDNumber=#{e_IDNumber},e_phone=#{e_phone},e_addr=#{e_addr},
         e_birthday=#{e_birthday},e_email=#{e_email},e_account=#{e_account},e_pass=#{e_pass}
         where e_id=#{e_id}
@@ -44,7 +44,7 @@
     </select>
 
     <select id="getAllEmp" resultType="com.stareatm.model.Emp">
-        select * from T_EMP ORDER BY E_HIREDATE ASC ;
+        select * from T_EMP ORDER BY E_HIREDATE ASC
     </select>
 
     <select id="getFirstHiredEmp" resultType="com.stareatm.model.Emp">

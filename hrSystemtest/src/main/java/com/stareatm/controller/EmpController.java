@@ -33,6 +33,9 @@ public class EmpController {
     private UserService userService;
     @Resource
     private AttendanceService attendanceService;
+    @Resource
+    private RewordPunishService rewordPunishService;
+
     @RequestMapping("toAddEmp")
     public String toAddEmp(Interview interview,Model model)throws Exception{
         Interview interview1=interviewService.getInterview_Rs(interview);
@@ -98,11 +101,16 @@ public class EmpController {
     public String empLogin(Emp emp,HttpSession session,Model model) throws Exception{
         Emp emp1=empService.login(emp);
         if(null!=emp1){
-            //登录成功
-            session.setAttribute("emp",emp1);
-            return "empMain";
+            if (emp1.getE_status()!=2) {
+                //登录成功
+                session.setAttribute("emp", emp1);
+                return "empMain";
+            }//离职员工
+            model.addAttribute("empLoginError","×员工已离职,登录失败!");
+            return "login";
         }
-        return "loginFailed";
+        model.addAttribute("empLoginError","×账号或密码错误,员工登录失败!");
+        return "login";
     }
 
     @RequestMapping("showEmpInfo")
@@ -111,6 +119,19 @@ public class EmpController {
         Job job=jobService.getJobByJ_id(emp.getJob());
         model.addAttribute(job);
         return "showEmpInfo";
+    }
+
+    @RequestMapping("updateEmpInfo")
+    public String updateEmpInfo(HttpSession session,Emp emp,String eBirthday,Model model)throws Exception{
+        Emp emp1= (Emp) session.getAttribute("emp");
+        Date e_birthday=new SimpleDateFormat("yyyy-MM-dd").parse(eBirthday);
+        emp.setE_birthday(e_birthday);
+        emp.setE_hireDate(emp1.getE_hireDate());
+        emp.setE_account(emp1.getE_account());
+        emp.setE_pass(emp1.getE_pass());
+        emp.setJob(emp1.getJob());
+        empService.updateEmp(emp);
+        return showEmpInfo(session,model);
     }
     @RequestMapping("queryEmpInfo")
     public String queryEmpInfo(Emp emp,Model model)throws Exception{

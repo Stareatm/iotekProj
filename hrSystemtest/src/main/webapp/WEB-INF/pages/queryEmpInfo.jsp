@@ -95,7 +95,7 @@
         <tr>
             <form action="empController/changeEmpJob">
                 <td>
-                    <select name="d_name" id="d_name">
+                    <select name="d_name" id="d_name" required="required">
                         <option value="${emp.job.dept.d_name}" selected="selected">${emp.job.dept.d_name}</option>
                         <c:forEach items="${deptList}" var="dept">
                             <c:if test="${!emp.job.dept.d_name.equals(dept.d_name)}">
@@ -105,7 +105,7 @@
                     </select>
                 </td>
                 <td>
-                    <select name="j_name" id="j_name">
+                    <select name="j_name" id="j_name" required="required">
                         <option value="${emp.job.j_name}" selected="selected">${emp.job.j_name}</option>
                         <c:forEach items="${jobList}" var="job">
                             <c:if test="${!emp.job.j_name.equals(job.j_name)}">
@@ -129,7 +129,7 @@
                     <div><a href="empStatusController/showEmpStatus?e_id=${emp.e_id}">正式员工</a></div>
                 </c:if>
                 <c:if test="${emp.e_status==2}">
-                    <div><a href="empStatusController/showEmpStatus">已离职员工</a></div>
+                    <div><a href="empStatusController/showEmpStatus?e_id=${emp.e_id}">已离职员工</a></div>
                 </c:if>
             </td>
 
@@ -156,7 +156,19 @@
                 </td>
             </c:if>
         </tr>
+        <tr>
+            <th>查看奖惩</th>
+        </tr>
+        <tr>
+            <td>
+                <form action="rewordPunishController/queryRP">
+                    <input type="hidden" name="e_id" value="${emp.e_id}">
+                    <input type="submit" value="查看">
+                </form>
+            </td>
+        </tr>
     </table>
+    <br>
     <a href="empController/toPage?choose=adminMain">返回>>主菜单</a>
 
 </body>

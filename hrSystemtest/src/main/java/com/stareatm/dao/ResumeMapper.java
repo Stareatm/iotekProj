@@ -18,4 +18,5 @@ public interface ResumeMapper {
     Resume getResumeByRs_id(Resume resume);
     List<Resume> getAllResumeByRs_status(Resume resume);
     Resume getResume_Interview(Resume resume);
+    List<Resume> getAllResumeByPhone(Resume resume);
 }

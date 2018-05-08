@@ -20,7 +20,8 @@
     ${LeaveEmpError}
     ${addTrainingError}
     ${updateTrainingError}
-    ${addDeptError}<br>
+    ${addDeptError}
+    ${addSalaryError}<br>
     <a href="empController/toPage?choose=adminMain">返回主页</a>
 </body>
 </html>

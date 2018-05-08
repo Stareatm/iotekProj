@@ -15,44 +15,63 @@
 <html>
 <head>
     <base href="<%=basePath%>"/>
-    <title></title>
+    <title>showConfiguredInterview</title>
+    <link rel="stylesheet" type="text/css" href="../../css/main.css">
+    <link rel="stylesheet" type="text/css" href="../../css/toMain.css">
+    <link rel="stylesheet" type="text/css" href="../../css/showUserInfo.css">
 </head>
 <body>
-    <p>已确认面试人名单如下</p>
-    <table border="1" cellspacing="0" cellpadding="0">
-        <tr>
-            <th>应聘者姓名</th>
-            <th>应聘者手机号</th>
-            <th>应聘的部门</th>
-            <th>应聘的职位</th>
-            <th>面试时间</th>
-            <th>面试地址</th>
-            <th>录取</th>
-        </tr>
-        <c:forEach items="${interviewList}" var="interview">
-            <tr>
-                <td>${interview.resume.rs_name}</td>
-                <td>${interview.resume.rs_phone}</td>
-                <td>
-                    <input value="${interview.d_name}" readonly="readonly">
-                </td>
-                <td>
-                    <input value=" ${interview.j_name}" readonly="readonly">
-                </td>
-                <td>
-                    <fmt:formatDate value="${interview.i_time}" pattern="yyyy-MM-dd HH:mm" var="iTime"/>
-                    <input type="datetime" value="${iTime}" readonly="readonly">
-                </td>
-                <td>${interview.i_addr}</td>
-                <td>
-                    <form action="empController/toAddEmp">
-                        <input type="hidden" name="i_id" value="${interview.i_id}">
-                        <input type="submit" value="录取">
-                    </form>
-                </td>
-            </tr>
+    <div class="content">
+        <c:forEach items="${interviewList}" var="interview" varStatus="status">
+            <table border="1" cellspacing="0" cellpadding="0">
+                <tr>
+                    <th colspan="7">已确认面试人名单${status.index+1}</th>
+                </tr>
+                <tr>
+                    <th>应聘者姓名</th>
+                    <td>
+                        <input value="${interview.resume.rs_name}" readonly="readonly">
+                    </td>
+                    <th>应聘者手机号</th>
+                    <td>
+                        <input value="${interview.resume.rs_phone}" readonly="readonly">
+                    </td>
+                </tr>
+                <tr>
+                    <th>应聘的部门</th>
+                    <td>
+                        <input value="${interview.d_name}" readonly="readonly">
+                    </td>
+                    <th>应聘的职位</th>
+                    <td>
+                        <input value=" ${interview.j_name}" readonly="readonly">
+                    </td>
+                </tr>
+                <tr>
+                    <th>面试时间</th>
+                    <td>
+                        <fmt:formatDate value="${interview.i_time}" pattern="yyyy-MM-dd HH:mm" var="iTime"/>
+                        <input type="datetime" value="${iTime}" readonly="readonly">
+                    </td>
+                    <th>面试地址</th>
+                    <td>
+                        <input type="text" value="${interview.i_addr}" readonly="readonly">
+                    </td>
+                </tr>
+                <tr>
+                    <th colspan="2">录取</th>
+                    <td colspan="2">
+                        <form action="empController/toAddEmp">
+                            <input type="hidden" name="i_id" value="${interview.i_id}">
+                            <input type="submit" value="录取">
+                        </form>
+                    </td>
+                </tr>
+            </table>
         </c:forEach>
-    </table>
+    </div>
+
+    <a href="empController/toPage?choose=adminMain">返回首页</a>
 </body>
 </html>
 

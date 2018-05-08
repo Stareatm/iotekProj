@@ -17,62 +17,99 @@
 <head>
     <base href="<%=basePath%>"/>
     <title>showUnReadResume</title>
+    <link rel="stylesheet" type="text/css" href="../../css/main.css">
+    <link rel="stylesheet" type="text/css" href="../../css/toMain.css">
+    <link rel="stylesheet" type="text/css" href="../../css/showUserInfo.css">
 </head>
 <body>
-    <c:if test="${resumeList.size()==0}">
-        <div>
-            对不起,没有未读的简历!
-        </div>
-    </c:if>
-    <c:if test="${resumeList.size()!=0}">
-        <table border="1" cellspacing="0" cellpadding="0">
-            <tr>
-                <th>姓名</th>
-                <th>性别</th>
-                <th>身份证号</th>
-                <th>出生日期</th>
-                <th>户籍地址</th>
-                <th>居住地址</th>
-                <th>工作年限</th>
-                <th>联系电话</th>
-                <th>Email</th>
-                <th>期望职位</th>
-                <th>期望工作地点</th>
-                <th>期望薪资</th>
-                <th>工作经历</th>
-                <th>标记简历</th>
-            </tr>
-            <c:forEach items="${resumeList}" var="resume">
-                <tr>
-                    <td>${resume.rs_name}</td>
-                    <td>
-                       ${resume.rs_sex}
-                    </td>
-                    <td>${resume.rs_IDNumber}</td>
-                    <td>
-                        <fmt:formatDate value="${resume.rs_birthday}" type="date" pattern="yyyy-MM-dd" var="birthday"/>
-                        <input type="date" value="${birthday}" readonly="readonly">
-                    </td>
-                    <td>${resume.rs_residence}</td>
-                    <td>${resume.rs_addr}</td>
-                    <td>${resume.rs_expTime}</td>
-                    <td>${resume.rs_phone}</td>
-                    <td>${resume.rs_email}</td>
-                    <td>${resume.rs_desiredPosition}</td>
-                    <td>${resume.rs_desiredLocation}</td>
-                    <td>${resume.rs_expectedSal}元/月</td>
-                    <td><textarea name="rs_careerExp" readonly="readonly">${resume.rs_careerExp}</textarea></td>
-                    <td>
-                        <form action="resumeController/markResume">
-                            <input type="hidden" name="rs_id" value="${resume.rs_id}">
-                            <input type="submit" value="标为已读">
-                        </form>
-                    </td>
-                </tr>
+    <div class="content">
+        <c:if test="${resumeList.size()==0}">
+            <div>
+                对不起,没有未读的简历!
+            </div>
+        </c:if>
+        <c:if test="${resumeList.size()!=0}">
+            <c:forEach items="${resumeList}" var="resume" varStatus="status">
+                <table border="1" cellspacing="0" cellpadding="0" >
+                    <tr>
+                        <th colspan="3">未读简历信息${status.index+1}</th>
+                    </tr>
+                    <tr>
+                        <th>姓名</th>
+                        <td>
+                            <input value="${resume.rs_name}" readonly="readonly">
+                        </td>
+                        <th>性别</th>
+                        <td>
+                            <input value="${resume.rs_sex}" readonly="readonly">
+                        </td>
+                        <th>身份证号</th>
+                        <td>
+                            <input value="${resume.rs_IDNumber}" readonly="readonly">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>出生日期</th>
+                        <td>
+                            <fmt:formatDate value="${resume.rs_birthday}" type="date" pattern="yyyy-MM-dd" var="birthday"/>
+                            <input type="date" value="${birthday}" readonly="readonly">
+                        </td>
+                        <th>户籍地址</th>
+                        <td>
+                            <input value="${resume.rs_residence}" readonly="readonly">
+                        </td>
+                        <th>居住地址</th>
+                        <td>
+                            <input value="${resume.rs_addr}" readonly="readonly">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>工作年限</th>
+                        <td>
+                            <input value="${resume.rs_expTime}" readonly="readonly">
+                        </td>
+                        <th>联系电话</th>
+                        <td>
+                            <input value="${resume.rs_phone}" readonly="readonly">
+                        </td>
+                        <th>Email</th>
+                        <td>
+                            <input value="${resume.rs_email}" readonly="readonly">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>期望职位</th>
+                        <td>
+                            <input value="${resume.rs_desiredPosition}" readonly="readonly">
+                        </td>
+                        <th>期望工作地点</th>
+                        <td>
+                            <input value="${resume.rs_desiredLocation}" readonly="readonly">
+                        </td>
+                        <th>期望薪资</th>
+                        <td>
+                            <input type="number" value="${resume.rs_expectedSal}" readonly="readonly">元/月
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>工作经历</th>
+                        <td>
+                            <textarea name="rs_careerExp" readonly="readonly">${resume.rs_careerExp}</textarea>
+                        </td>
+                        <th>标记简历</th>
+                        <td>
+                            <form action="resumeController/markResume">
+                                <input type="hidden" name="rs_id" value="${resume.rs_id}">
+                                <input type="submit" value="标为已读">
+                            </form>
+                        </td>
+                    </tr>
+                </table>
+                <p></p>
             </c:forEach>
-        </table>
-    </c:if>
-    <a href="recruitController/toPage?choose=adminMain">返回主界面</a>
+        </c:if>
+    </div>
+    <a href="recruitController/toPage?choose=adminMain" id="toMain">返回主界面</a>
 </body>
 </html>
 

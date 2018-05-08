@@ -13,14 +13,26 @@
 <html>
 <head>
     <base href="<%=basePath%>"/>
-    <title></title>
+    <title>userMain</title>
+    <link rel="stylesheet" type="text/css" href="../../css/main.css">
 </head>
 <body>
-    <div>欢迎用户&nbsp;${sessionScope.user}&nbsp;登录!</div>
-    <a>查看个人信息</a>
-    <a href="recruitController/showReceivedRecruit">查看招聘信息</a>
-    <a href="resumeController/showResume">简历管理</a>
-    <a href="interviewController/showReceivedInterview">查看面试邀请</a>
+    <div class="content">
+        <ul>
+            <li>
+                <a href="userController/toPage?choose=showUserInfo">查看个人信息</a>
+            </li>
+            <li>
+                <a href="recruitController/showReceivedRecruit">查看招聘信息</a>
+            </li>
+            <li>
+                <a href="resumeController/showResume">简历管理</a>
+            </li>
+            <li>
+                <a href="interviewController/showReceivedInterview">查看面试邀请</a>
+            </li>
+        </ul>
+    </div>
 </body>
 </html>
 

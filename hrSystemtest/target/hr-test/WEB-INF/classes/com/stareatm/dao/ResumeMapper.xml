@@ -48,6 +48,12 @@
         WHERE rs.RS_ID=i.RS_ID
         AND rs.RS_ID=#{rs_id}
     </select>
+    <select id="getAllResumeByPhone" resultMap="Resume_User">
+        SELECT rs.*,U_NAME,U_PASS,U_TYPE
+        from T_RESUME rs,T_USER u
+        WHERE rs.U_ID=u.U_ID
+        AND rs.RS_PHONE=#{rs_phone}
+    </select>
 
     <resultMap id="Resume_User" type="Resume">
         <id property="rs_id" column="RS_ID"/>

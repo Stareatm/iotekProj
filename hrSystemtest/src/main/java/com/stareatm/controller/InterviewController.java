@@ -50,7 +50,6 @@ public class InterviewController {
         Resume resume1=resumeService.getResumeByRs_id(resume);//查出简历及用户信息
         interview.setResume(resume);//简历
         String time=iTime.substring(0,10)+" "+iTime.substring(11,16);
-        System.out.println(time);
         interview.setI_time(new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(time));//面试时间
         interview.setI_status(0);
         interviewService.addInterview(interview);//发送面试成功

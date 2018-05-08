@@ -50,4 +50,9 @@ public class ResumeServiceImpl implements ResumeService {
     public Resume getResume_Interview(Resume resume) {
         return resumeMapper.getResume_Interview(resume);
     }
+
+    @Override
+    public List<Resume> getAllResumeByPhone(Resume resume) {
+        return resumeMapper.getAllResumeByPhone(resume);
+    }
 }

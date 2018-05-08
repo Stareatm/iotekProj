@@ -8,8 +8,10 @@ import com.stareatm.service.ResumeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -43,11 +45,33 @@ public class ResumeController {
         resumeService.deleteResume(resume);
         return showResume(model,session);
     }
+
+    @RequestMapping("phoneAJAX")
+    public void phoneAJAX(String phone, HttpSession session, HttpServletResponse response)throws Exception{
+        response.setContentType("text/html;charset=utf-8");
+        User user= (User) session.getAttribute("user");
+        Resume resume=new Resume();
+        resume.setRs_phone(phone);
+        List<Resume> resumeList=resumeService.getAllResumeByPhone(resume);
+        String message=null;
+        if (resumeList.size()!=0&&!resumeList.get(0).getUser().equals(user)){
+            message="×此手机号在本网站已经登记,不可登记于该简历!";
+        }else {
+            message = "√,此号码未被使用!";
+        }
+        response.getWriter().print(message);
+    }
+
     @RequestMapping("addResume")
     public String addResume(Resume resume, Model model, String birthday, HttpSession session)throws Exception{
         User user= (User) session.getAttribute("user");
         resume.setUser(user);
         resume.setRs_birthday(new SimpleDateFormat("yyyy-MM-dd").parse(birthday));
+        List<Resume> resumeList=resumeService.getAllResumeByPhone(resume);
+        if (resumeList.size()!=0&&!resumeList.get(0).getUser().equals(user)){
+            model.addAttribute("phoneError","此手机号在本网站已被其他用户登记,不可登记于该简历!") ;
+            return "addResume";
+        }
         resumeService.addResume(resume);
         return showResume(model,session);
     }
@@ -90,4 +114,5 @@ public class ResumeController {
         model.addAttribute("resumeList",resumeList);
         return "showReadedResume";
     }
+
 }

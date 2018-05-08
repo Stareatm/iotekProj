@@ -24,4 +24,9 @@ public class EmpStatusServiceImpl implements EmpStatusService {
     public List<EmpStatus> getEmpStatusByE_id(EmpStatus empStatus) {
         return empStatusMapper.getEmpStatusByE_id(empStatus);
     }
+
+    @Override
+    public EmpStatus getEmpStatusByE_idE_status(EmpStatus empStatus) {
+        return empStatusMapper.getEmpStatusByE_idE_status(empStatus);
+    }
 }
