@@ -47,7 +47,7 @@
 <body>
     <div class="content">
         <table border="1" cellpadding="0" cellspacing="0">
-            <form action="recruitController/addRecruit">
+            <form action="recruitController/addRecruit" method="post">
                 <tr>
                     <th>部门名称</th>
                     <td>

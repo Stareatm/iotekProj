@@ -116,7 +116,7 @@
                         </tr>
                     </c:if>
                     <c:if test="${recruit.rc_status==0}"><%--可修改,删除--%>
-                        <form action="recruitController/updateRecruit">
+                        <form action="recruitController/updateRecruit" method="post">
                             <tr>
                                 <th>部门名称</th>
                                 <td>
@@ -235,7 +235,7 @@
                         </form>
                         <tr>
                             <td>
-                                <form action="recruitController/deleteRecruit">
+                                <form action="recruitController/deleteRecruit" method="post">
                                     <input type="hidden" name="rc_id" value="${recruit.rc_id}" >
                                     <input type="submit" value="删除">
                                 </form>

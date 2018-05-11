@@ -31,7 +31,7 @@
                 <th>添加奖惩记录</th>
             </tr>
             <tr>
-                <form action="rewordPunishController/addRP1">
+                <form action="rewordPunishController/addRP1" method="post">
                     <td>
                         <input type="datetime-local" name="rpTime" required="required">
                     </td>

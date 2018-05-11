@@ -137,7 +137,7 @@
                                         －
                                     </div>
                                     <div>
-                                        <form class="deleteJob" action="jobController/deleteJob">
+                                        <form class="deleteJob" action="jobController/deleteJob" method="post">
 
                                         </form>
                                     </div>
@@ -150,7 +150,7 @@
                                 ＋
                             </div>
                             <div>
-                                <form class="addJob" action="jobController/addJob">
+                                <form class="addJob" action="jobController/addJob" method="post">
 
                                 </form>
                             </div>
@@ -176,7 +176,7 @@
 
                         </div>
                         <div>
-                            <form class="addDept" action="deptController/addDept">
+                            <form class="addDept" action="deptController/addDept" method="post">
 
                             </form>
                         </div>

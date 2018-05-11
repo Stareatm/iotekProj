@@ -65,7 +65,7 @@
                     <tr>
                         <th>确认面试</th>
                         <td>
-                            <form action="interviewController/confirmInterview">
+                            <form action="interviewController/confirmInterview" method="post">
                                 <input type="hidden" name="i_id" value="${interview.i_id}">
                                 <input type="submit" value="确认">
                             </form>

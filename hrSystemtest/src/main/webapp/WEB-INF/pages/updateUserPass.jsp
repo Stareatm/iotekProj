@@ -28,7 +28,7 @@
 </head>
 <body>
     <div class="content">
-        <form action="userController/updateUserPass">
+        <form action="userController/updateUserPass" method="post">
             原密码:<input type="password" name="oldPass"  class="pass" value="请输入密码" required="required" pattern="[a-zA-Z]\w{5,17}" title="用户密码必须是由大小写英文字母开头,且是由大小写英文字母、数字和下划线组成,长度为6-18位"><br>
             新密码:<input type="password" name="newPass"  class="pass" value="请输入新密码" required="required" pattern="[a-zA-Z]\w{5,17}" title="用户密码必须是由大小写英文字母开头,且是由大小写英文字母、数字和下划线组成,长度为6-18位"><br>
             确认密码:<input type="password" name="rePass"  class="pass" value="请确认密码" required="required" pattern="[a-zA-Z]\w{5,17}" title="用户密码必须是由大小写英文字母开头,且是由大小写英文字母、数字和下划线组成,长度为6-18位"><br>

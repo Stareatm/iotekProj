@@ -43,7 +43,7 @@
                     <tr>
                         <th colspan="16">简历</th>
                     </tr>
-                    <form action="resumeController/updateResume">
+                    <form action="resumeController/updateResume" method="post">
                         <tr>
                             <th>姓名</th>
                             <td>
@@ -131,7 +131,7 @@
                         <th>删除简历</th>
                         <td>
                             <c:if test="${resume.rs_status==-1}">
-                                <form action="resumeController/deleteResume">
+                                <form action="resumeController/deleteResume" method="post">
                                     <input type="hidden" name="rs_id" value="${resume.rs_id}">
                                     <input type="submit" value="删除">
                                 </form>
@@ -144,7 +144,7 @@
                         <td>
                             <div class="send1">
                                 <c:if test="${resume.rs_status==-1}"><%--未发送--%>
-                                    <form action="resumeController/sendResume">
+                                    <form action="resumeController/sendResume" method="post">
                                         <input type="hidden" name="rs_id" value="${resume.rs_id}">
                                         <input type="submit" value="发送">
                                     </form>

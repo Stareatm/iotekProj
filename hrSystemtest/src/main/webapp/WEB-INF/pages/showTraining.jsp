@@ -86,7 +86,7 @@
                     <tr>
                         <th colspan="8">培训信息${status.index+1}</th>
                     </tr>
-                    <form action="trainingController/updateTraining">
+                    <form action="trainingController/updateTraining" method="post">
                         <tr>
                             <th>培训主题</th>
                             <th>培训内容</th>
@@ -153,7 +153,7 @@
                     <tr>
                         <th colspan="2">删除</th>
                         <td colspan="2">
-                            <form action="trainingController/deleteTraining">
+                            <form action="trainingController/deleteTraining" method="post">
                                 <input type="hidden" name="t_id" value="${training.t_id}">
                                 <input type="submit" value="删除">
                             </form>
@@ -163,7 +163,7 @@
             </c:forEach>
             <p></p>
             <table border="1" cellspacing="0" cellpadding="0">
-                <form class="addTraining" action="trainingController/addTraining">
+                <form class="addTraining" action="trainingController/addTraining" method="post">
                     <tr>添加培训</tr>
                     <tr>
                         <th>培训主题</th>

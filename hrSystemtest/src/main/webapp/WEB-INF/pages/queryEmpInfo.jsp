@@ -98,7 +98,7 @@
                 </c:if>
             </tr>
             <tr>
-                <form action="empController/changeEmpJob">
+                <form action="empController/changeEmpJob" method="post">
                     <td>
                         <select name="d_name" id="d_name" required="required">
                             <option value="${emp.job.dept.d_name}" selected="selected">${emp.job.dept.d_name}</option>
@@ -139,13 +139,13 @@
                 </td>
                 <c:if test="${emp.e_status==0}">
                     <td>
-                        <form action="empStatusController/toRegular">
+                        <form action="empStatusController/toRegular" method="post">
                             <input type="hidden" name="e_id" value="${emp.e_id}">
                             <input type="submit" value="转正处理">
                         </form>
                     </td>
                     <td>
-                        <form action="empStatusController/toLeave">
+                        <form action="empStatusController/toLeave" method="post">
                             <input type="hidden" name="e_id" value="${emp.e_id}">
                             <input type="submit" value="离职处理">
                         </form>
@@ -153,7 +153,7 @@
                 </c:if>
                 <c:if test="${emp.e_status==1}">
                     <td>
-                        <form action="empStatusController/toLeave">
+                        <form action="empStatusController/toLeave" method="post">
                             <input type="hidden" name="e_id" value="${emp.e_id}">
                             <input type="submit" value="离职处理">
                         </form>
@@ -163,7 +163,7 @@
             <tr>
                 <th>查看奖惩</th>
                 <td>
-                    <form action="rewordPunishController/queryRP">
+                    <form action="rewordPunishController/queryRP" method="post">
                         <input type="hidden" name="e_id" value="${emp.e_id}">
                         <input type="submit" value="查看">
                     </form>

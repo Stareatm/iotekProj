@@ -110,7 +110,7 @@
                                 </c:if>
                             </c:if>
                             <c:if test="${null==resume.interview}">
-                                <form action="interviewController/toAddInterview">
+                                <form action="interviewController/toAddInterview" method="post">
                                     <input type="hidden" name="rs_id" value="${resume.rs_id}">
                                     <input type="submit" value="发送邀请">
                                 </form>

@@ -65,7 +65,7 @@
                     <tr>
                         <th colspan="2">录取</th>
                         <td colspan="2">
-                            <form action="empController/toAddEmp">
+                            <form action="empController/toAddEmp" method="post">
                                 <input type="hidden" name="i_id" value="${interview.i_id}">
                                 <input type="submit" value="录取">
                             </form>

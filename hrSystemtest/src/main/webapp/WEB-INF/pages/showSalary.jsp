@@ -75,7 +75,7 @@
                         <th colspan="2">申请复议</th>
                         <td colspan="2">
                             <c:if test="${salary.s_status==0}">
-                                <form action="salaryController/addSalaryReconsider">
+                                <form action="salaryController/addSalaryReconsider" method="post">
                                     <input type="hidden" name="s_id" value="${salary.s_id}">
                                     <input type="submit" value="申请">
                                 </form>

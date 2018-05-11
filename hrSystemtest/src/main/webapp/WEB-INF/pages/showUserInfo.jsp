@@ -31,23 +31,21 @@
                 <th>修改密码</th>
             </tr>
             <tr>
-                <form>
-                    <td>
-                        <c:if test="${sessionScope.user.u_type==0}">
-                            <input type="text" name="u_type" value="普通用户" readonly="readonly">
-                        </c:if>
-                        <c:if test="${sessionScope.user.u_type==2}">
-                            <input type="text" name="u_type" value="管理员" readonly="readonly">
-                        </c:if>
-                    </td>
-                    <td>
-                        <input type="text" name="u_name" value=" ${sessionScope.user.u_name}" readonly="readonly">
-                    </td>
-                    <td>
-                        <a href="userController/toPage?choose=updateUserPass">修改密码</a>
-                        <span>${updateUserPassSucceed}</span>
-                    </td>
-                </form>
+                <td>
+                    <c:if test="${sessionScope.user.u_type==0}">
+                        <input type="text" name="u_type" value="普通用户" readonly="readonly">
+                    </c:if>
+                    <c:if test="${sessionScope.user.u_type==2}">
+                        <input type="text" name="u_type" value="管理员" readonly="readonly">
+                    </c:if>
+                </td>
+                <td>
+                    <input type="text" name="u_name" value=" ${sessionScope.user.u_name}" readonly="readonly">
+                </td>
+                <td>
+                    <a href="userController/toPage?choose=updateUserPass">修改密码</a>
+                    <span>${updateUserPassSucceed}</span>
+                </td>
             </tr>
         </table>
     </div>

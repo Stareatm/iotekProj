@@ -98,7 +98,7 @@
                         </td>
                         <th>标记简历</th>
                         <td>
-                            <form action="resumeController/markResume">
+                            <form action="resumeController/markResume" method="post">
                                 <input type="hidden" name="rs_id" value="${resume.rs_id}">
                                 <input type="submit" value="标为已读">
                             </form>

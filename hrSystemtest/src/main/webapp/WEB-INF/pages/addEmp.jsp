@@ -23,7 +23,7 @@
 <body>
     <div class="content">
         <table border="1" cellpadding="0" cellspacing="0">
-            <form action="empController/addEmp">
+            <form action="empController/addEmp" method="post">
                 <tr>
                     <th colspan="6">入职员工的信息</th>
                 </tr>

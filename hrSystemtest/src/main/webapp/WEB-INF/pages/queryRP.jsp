@@ -39,7 +39,7 @@
                 </tr>
                 <c:forEach items="${rewordPunishList}" var="rp">
                     <tr>
-                        <form action="rewordPunishController/updateRP">
+                        <form action="rewordPunishController/updateRP" method="post">
                             <td>
                                 <fmt:formatDate value="${rp.rp_time}" pattern="yyyy-MM-dd HH:mm:ss" var="rp_time"/>
                                 <input type="datetime" name="rpTime" value="${rp_time}" required="required">
@@ -57,7 +57,7 @@
                             </td>
                         </form>
                         <td>
-                            <form action="rewordPunishController/deleteRP">
+                            <form action="rewordPunishController/deleteRP" method="post">
                                 <input type="hidden" name="rp_id" value="${rp.rp_id}">
                                 <input type="submit" value="删除">
                             </form>
@@ -78,7 +78,7 @@
                 <th>添加奖惩记录</th>
             </tr>
             <tr>
-                <form action="rewordPunishController/addRP">
+                <form action="rewordPunishController/addRP" method="post">
                     <td>
                         <input type="datetime-local" name="rpTime" required="required">
                     </td>

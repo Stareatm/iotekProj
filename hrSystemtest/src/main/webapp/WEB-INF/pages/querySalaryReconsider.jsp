@@ -77,7 +77,7 @@
                     <tr>
                         <th>复议处理</th>
                         <td>
-                            <form action="salaryController/doReconsider">
+                            <form action="salaryController/doReconsider" method="post">
                                 <select name="status" required="required">
                                     <option value="2">复议审批未通过</option>
                                     <option value="3">复议审批通过,添加奖惩</option>

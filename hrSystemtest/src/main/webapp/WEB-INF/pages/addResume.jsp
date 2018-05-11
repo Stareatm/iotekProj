@@ -55,7 +55,7 @@
 <body>
     <div class="content">
         <table border="1" cellspacing="0" cellpadding="0">
-            <form action="resumeController/addResume">
+            <form action="resumeController/addResume" method="post">
                 <tr>
                     <th colspan="6"> 简历信息</th>
                 </tr>

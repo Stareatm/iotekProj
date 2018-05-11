@@ -29,7 +29,7 @@
                 <th>邮箱</th>
             </tr>
             <tr>
-                <form action="empController/updateEmpInfo">
+                <form action="empController/updateEmpInfo" method="post">
                     <td>
                         <input name="e_name" type="text" value="${sessionScope.emp.e_name}" readonly="readonly">
                     </td>

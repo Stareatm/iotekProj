@@ -30,7 +30,7 @@
                 <th>提交详情</th>
             </tr>
             <tr>
-                <form action="empStatusController/RegularEmp">
+                <form action="empStatusController/RegularEmp" method="post">
                     <td>
                         <input name="e_id" type="text" value="${emp.e_id}" readonly="readonly">
                     </td>
