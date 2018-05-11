@@ -15,7 +15,10 @@
 <html>
 <head>
     <base href="<%=basePath%>"/>
-    <title></title>
+    <title>queryEmpInfo</title>
+    <link rel="stylesheet" type="text/css" href="../../css/main.css">
+    <link rel="stylesheet" type="text/css" href="../../css/toMain.css">
+    <link rel="stylesheet" type="text/css" href="../../css/showUserInfo.css">
     <script type="text/javascript" src="js/jquery-3.1.0.js"></script>
     <script>
         $(function () {
@@ -45,131 +48,130 @@
     </script>
 </head>
 <body>
-    <table border="1" cellpadding="0" cellspacing="0">
-        <tr>
-            <th>员工姓名</th>
-            <th>员工性别</th>
-            <th>联系方式</th>
-            <th>生日</th>
-            <th>邮箱</th>
-            <th>地址</th>
-            <th>入职日期</th>
-        </tr>
-        <tr>
-            <td>
-                <input name="e_name" type="text" value="${emp.e_name}" readonly="readonly">
-            </td>
-            <td>
-                <input name="e_sex" type="text" value="${emp.e_sex}" readonly="readonly">
-            </td>
-            <td>
-                <input name="e_phone" type="text" value="${emp.e_phone}" readonly="readonly">
-            </td>
-            <td>
-                <fmt:formatDate value="${emp.e_birthday}" pattern="yyyy-MM-dd" var="birthday"/>
-                <input name="eBirthday" type="date" value="${birthday}" readonly="readonly">
-            </td>
-            <td>
-                <input name="e_email" type="text" value="${emp.e_email}" readonly="readonly">
-            </td>
-            <td>
-                <input name="e_addr" type="text" value="${emp.e_addr}" readonly="readonly">
-            </td>
-            <td>
-                <fmt:formatDate value="${emp.e_hireDate}" pattern="yyyy-MM-dd" var="hireDate"/>
-                <input name="eHireDate" type="date" value="${hireDate}" readonly="readonly"></td>
-        </tr>
-        <tr>
-            <th>部门</th>
-            <th>职位</th>
-            <th>基本薪资</th>
-            <th>员工状态</th>
-            <c:if test="${emp.e_status==0}">
-                <th>转正</th>
-                <th>离职</th>
-            </c:if>
-            <c:if test="${emp.e_status==1}">
-                <th>离职</th>
-            </c:if>
-        </tr>
-        <tr>
-            <form action="empController/changeEmpJob">
+    <div class="content">
+        <table border="1" cellpadding="0" cellspacing="0">
+            <tr>
+                <th>员工姓名</th>
+                <th>员工性别</th>
+                <th>联系方式</th>
+                <th>生日</th>
+                <th>邮箱</th>
+                <th>地址</th>
+                <th>入职日期</th>
+            </tr>
+            <tr>
                 <td>
-                    <select name="d_name" id="d_name" required="required">
-                        <option value="${emp.job.dept.d_name}" selected="selected">${emp.job.dept.d_name}</option>
-                        <c:forEach items="${deptList}" var="dept">
-                            <c:if test="${!emp.job.dept.d_name.equals(dept.d_name)}">
-                                <option value="${dept.d_name}">${dept.d_name}</option>
-                            </c:if>
-                        </c:forEach>
-                    </select>
+                    <input name="e_name" type="text" value="${emp.e_name}" readonly="readonly">
                 </td>
                 <td>
-                    <select name="j_name" id="j_name" required="required">
-                        <option value="${emp.job.j_name}" selected="selected">${emp.job.j_name}</option>
-                        <c:forEach items="${jobList}" var="job">
-                            <c:if test="${!emp.job.j_name.equals(job.j_name)}">
-                                <option value="${job.j_name}">${job.j_name}</option>
-                            </c:if>
-                        </c:forEach>
-                    </select>
-                    <input type="hidden" name="e_id" value="${emp.e_id}">
-                    <input type="submit" value="换岗">
+                    <input name="e_sex" type="text" value="${emp.e_sex}" readonly="readonly">
                 </td>
-            </form>
-            <td>
-                <input name="e_baseSal" type="number" value="${emp.e_baseSal}" readonly="readonly">元/月
-            </td>
-
-            <td>
+                <td>
+                    <input name="e_phone" type="text" value="${emp.e_phone}" readonly="readonly">
+                </td>
+                <td>
+                    <fmt:formatDate value="${emp.e_birthday}" pattern="yyyy-MM-dd" var="birthday"/>
+                    <input name="eBirthday" type="date" value="${birthday}" readonly="readonly">
+                </td>
+                <td>
+                    <input name="e_email" type="text" value="${emp.e_email}" readonly="readonly">
+                </td>
+                <td>
+                    <input name="e_addr" type="text" value="${emp.e_addr}" readonly="readonly">
+                </td>
+                <td>
+                    <fmt:formatDate value="${emp.e_hireDate}" pattern="yyyy-MM-dd" var="hireDate"/>
+                    <input name="eHireDate" type="date" value="${hireDate}" readonly="readonly">
+                </td>
+            </tr>
+            <tr>
+                <th>部门</th>
+                <th>职位</th>
+                <th>基本薪资</th>
+                <th>员工状态</th>
                 <c:if test="${emp.e_status==0}">
-                    <div>试用期员工</div>
+                    <th>转正</th>
+                    <th>离职</th>
                 </c:if>
                 <c:if test="${emp.e_status==1}">
-                    <div><a href="empStatusController/showEmpStatus?e_id=${emp.e_id}">正式员工</a></div>
+                    <th>离职</th>
                 </c:if>
-                <c:if test="${emp.e_status==2}">
-                    <div><a href="empStatusController/showEmpStatus?e_id=${emp.e_id}">已离职员工</a></div>
-                </c:if>
-            </td>
-
-            <c:if test="${emp.e_status==0}">
-                <td>
-                    <form action="empStatusController/toRegular">
+            </tr>
+            <tr>
+                <form action="empController/changeEmpJob">
+                    <td>
+                        <select name="d_name" id="d_name" required="required">
+                            <option value="${emp.job.dept.d_name}" selected="selected">${emp.job.dept.d_name}</option>
+                            <c:forEach items="${deptList}" var="dept">
+                                <c:if test="${!emp.job.dept.d_name.equals(dept.d_name)}">
+                                    <option value="${dept.d_name}">${dept.d_name}</option>
+                                </c:if>
+                            </c:forEach>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="j_name" id="j_name" required="required">
+                            <option value="${emp.job.j_name}" selected="selected">${emp.job.j_name}</option>
+                            <c:forEach items="${jobList}" var="job">
+                                <c:if test="${!emp.job.j_name.equals(job.j_name)}">
+                                    <option value="${job.j_name}">${job.j_name}</option>
+                                </c:if>
+                            </c:forEach>
+                        </select>
                         <input type="hidden" name="e_id" value="${emp.e_id}">
-                        <input type="submit" value="转正处理">
-                    </form>
-                </td>
-                <td>
-                    <form action="empStatusController/toLeave">
-                        <input type="hidden" name="e_id" value="${emp.e_id}">
-                        <input type="submit" value="离职处理">
-                    </form>
-                </td>
-            </c:if>
-            <c:if test="${emp.e_status==1}">
-                <td>
-                    <form action="empStatusController/toLeave">
-                        <input type="hidden" name="e_id" value="${emp.e_id}">
-                        <input type="submit" value="离职处理">
-                    </form>
-                </td>
-            </c:if>
-        </tr>
-        <tr>
-            <th>查看奖惩</th>
-        </tr>
-        <tr>
-            <td>
-                <form action="rewordPunishController/queryRP">
-                    <input type="hidden" name="e_id" value="${emp.e_id}">
-                    <input type="submit" value="查看">
+                        <input type="submit" value="换岗">
+                    </td>
                 </form>
-            </td>
-        </tr>
-    </table>
-    <br>
-    <a href="empController/toPage?choose=adminMain">返回>>主菜单</a>
+                <td>
+                    <input name="e_baseSal" type="number" value="${emp.e_baseSal}" readonly="readonly">元/月
+                </td>
+
+                <td>
+                    <c:if test="${emp.e_status==0}">
+                        <input type="text" value="试用期员工" readonly="readonly">
+                    </c:if>
+                    <c:if test="${emp.e_status==1}">
+                        <div><a href="empStatusController/showEmpStatus?e_id=${emp.e_id}">正式员工</a></div>
+                    </c:if>
+                    <c:if test="${emp.e_status==2}">
+                        <div><a href="empStatusController/showEmpStatus?e_id=${emp.e_id}">已离职员工</a></div>
+                    </c:if>
+                </td>
+                <c:if test="${emp.e_status==0}">
+                    <td>
+                        <form action="empStatusController/toRegular">
+                            <input type="hidden" name="e_id" value="${emp.e_id}">
+                            <input type="submit" value="转正处理">
+                        </form>
+                    </td>
+                    <td>
+                        <form action="empStatusController/toLeave">
+                            <input type="hidden" name="e_id" value="${emp.e_id}">
+                            <input type="submit" value="离职处理">
+                        </form>
+                    </td>
+                </c:if>
+                <c:if test="${emp.e_status==1}">
+                    <td>
+                        <form action="empStatusController/toLeave">
+                            <input type="hidden" name="e_id" value="${emp.e_id}">
+                            <input type="submit" value="离职处理">
+                        </form>
+                    </td>
+                </c:if>
+            </tr>
+            <tr>
+                <th>查看奖惩</th>
+                <td>
+                    <form action="rewordPunishController/queryRP">
+                        <input type="hidden" name="e_id" value="${emp.e_id}">
+                        <input type="submit" value="查看">
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <a href="empController/toPage?choose=adminMain" id="toMain">返回主菜单</a>
 
 </body>
 </html>

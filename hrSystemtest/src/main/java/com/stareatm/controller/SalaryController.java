@@ -159,7 +159,7 @@ public class SalaryController {
                         RewordPunish rewordPunish = new RewordPunish();
                         String currentStr = new SimpleDateFormat("yyyy-MM").format(s_time);
                         //当月1号00:00:01添加奖惩
-                        Date rp_time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(selectedStr + "-01 00:00:01");
+                        Date rp_time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(currentStr + "-01 00:00:01");
                         rewordPunish.setRp_time(rp_time);
                         int p_days = 22 - attendanceList.size();//旷工数天
                         int rp_rpSal = -p_days * s_baseSal / 30;//旷工工资金额,正数
@@ -185,6 +185,9 @@ public class SalaryController {
                         }
                     }
                     s_totalSal = s_baseSal + s_performance - s_socialSecurity + s_rpSal;//总工资
+                    if(s_totalSal<0){
+                        s_totalSal=0;
+                    }
                     salary.setS_rpSal(s_rpSal);
                     salary.setS_totalSal(s_totalSal);
                     salaryService.addSalary(salary);
@@ -243,6 +246,8 @@ public class SalaryController {
 
     @RequestMapping("doReconsider")
     public String doReconsider(Salary salary,String status,Model model)throws Exception{
+        System.out.println(">>>>1111>>sta="+status);
+        System.out.println(">>>>222>>sal="+salary);
         Salary salary1=salaryService.getSalaryByS_id(salary);
         if ("3".equals(status)){//审批通过
             model.addAttribute("salary",salary1);

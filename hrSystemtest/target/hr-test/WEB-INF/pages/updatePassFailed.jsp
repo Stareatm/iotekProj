@@ -13,11 +13,16 @@
 <html>
 <head>
     <base href="<%=basePath%>"/>
-    <title></title>
+    <title>updatePassFailed</title>
+    <link rel="stylesheet" type="text/css" href="../../css/main.css">
+    <link rel="stylesheet" type="text/css" href="../../css/toMain.css">
+    <link rel="stylesheet" type="text/css" href="../../css/showUserInfo.css">
 </head>
 <body>
-    <div>两次密码不一致!</div>
-    <a href="empController/toPage?choose=updatePass">修改密码</a>
+    <div class="content">
+        <div>两次密码不一致!</div>
+    </div>
+    <a href="empController/toPage?choose=updatePass" id="toMain">修改密码</a>
 </body>
 </html>
 

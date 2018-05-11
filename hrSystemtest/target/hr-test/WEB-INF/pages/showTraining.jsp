@@ -27,6 +27,10 @@
         th,td{
             width: 150px;
         }
+        .span{
+            color: red;
+            font-size: 12px;
+        }
       /*  .plus{
             width: 20px;
             height: 20px;
@@ -65,6 +69,9 @@
                     }
                 })
             });
+            $(".endTime").focus(function () {
+                $(".span").empty();
+            })
         })
     </script>
 </head>
@@ -157,6 +164,7 @@
             <p></p>
             <table border="1" cellspacing="0" cellpadding="0">
                 <form class="addTraining" action="trainingController/addTraining">
+                    <tr>添加培训</tr>
                     <tr>
                         <th>培训主题</th>
                         <th>培训内容</th>

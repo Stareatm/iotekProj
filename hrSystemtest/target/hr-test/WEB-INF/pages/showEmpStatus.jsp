@@ -15,35 +15,41 @@
 <html>
 <head>
     <base href="<%=basePath%>"/>
-    <title></title>
+    <title>showEmpStatus</title>
+    <link rel="stylesheet" type="text/css" href="../../css/main.css">
+    <link rel="stylesheet" type="text/css" href="../../css/toMain.css">
+    <link rel="stylesheet" type="text/css" href="../../css/showUserInfo.css">
 </head>
 <body>
-    <table>
-        <tr>
-            <th>员工编号</th>
-            <th>员工姓名</th>
-            <th>处理时间</th>
-            <th>缘由</th>
-        </tr>
-        <c:forEach items="${empStatusList}" var="empStatus">
+    <div class="content">
+        <table border="1" cellpadding="0" cellspacing="0">
             <tr>
-                <td>
-                    <input type="text" value="${emp.e_id}" readonly="readonly">
-                </td>
-                <td>
-                    <input type="text" value="${emp.e_name}" readonly="readonly">
-                </td>
-                <td>
-                    <fmt:formatDate value="${empStatus.es_changeDate}" pattern="yyyy-MM-dd" var="changeDate"/>
-                    <input type="date" value="${changeDate}" readonly="readonly">
-                </td>
-                <td>
-                    <textarea readonly="readonly">${empStatus.es_reasons}</textarea>
-                </td>
+                <th>员工编号</th>
+                <th>员工姓名</th>
+                <th>处理时间</th>
+                <th>缘由</th>
             </tr>
-        </c:forEach>
-    </table>
-    <a href="empController/toPage?choose=adminMain">返回主页</a>
+            <c:forEach items="${empStatusList}" var="empStatus">
+                <tr>
+                    <td>
+                        <input type="text" value="${emp.e_id}" readonly="readonly">
+                    </td>
+                    <td>
+                        <input type="text" value="${emp.e_name}" readonly="readonly">
+                    </td>
+                    <td>
+                        <fmt:formatDate value="${empStatus.es_changeDate}" pattern="yyyy-MM-dd" var="changeDate"/>
+                        <input type="date" value="${changeDate}" readonly="readonly">
+                    </td>
+                    <td>
+                        <textarea readonly="readonly">${empStatus.es_reasons}</textarea>
+                    </td>
+                </tr>
+            </c:forEach>
+        </table>
+    </div>
+    <a href="empController/queryEmpInfo?e_id=${emp.e_id}" id="toUpper">返回上一级</a>
+    <a href="empController/toPage?choose=adminMain" id="toMain">返回主页</a>
 </body>
 </html>
 

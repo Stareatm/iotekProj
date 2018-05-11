@@ -44,7 +44,7 @@
                 <a href="salaryController/showAllSalary">薪资结算</a>
             </li>
             <li>
-                <a href="salaryController/querySalaryReconsider">查看薪资复议</a>
+                <a href="salaryController/querySalaryReconsider">薪资复议</a>
             </li>
         </ul>
     </div>

@@ -2,6 +2,7 @@ package com.stareatm.controller;
 
 import com.stareatm.model.*;
 import com.stareatm.service.*;
+import jdk.nashorn.internal.scripts.JO;
 import org.junit.experimental.theories.FromDataPoints;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.EnumMap;
 import java.util.List;
 
 /**
@@ -54,7 +56,7 @@ public class EmpController {
         emp.setE_hireDate(e_hireDate);
         emp.setJob(job1);
         emp.setE_account(emp.getE_phone());
-        emp.setE_pass("123456");
+        emp.setE_pass("a123456");
         empService.addEmp(emp);
         Interview interview1=interviewService.getInterview_Rs(interview);
         interview1.setI_status(2);
@@ -73,7 +75,22 @@ public class EmpController {
             return dept1.getJobList();
         }
         return jobList;
-
+    }
+    @RequestMapping("showEmpAJAX")
+    @ResponseBody
+    public List<Emp> showEmpAJAX(String d_name,String j_name){
+        System.out.println(">>>>d_name="+d_name);
+        System.out.println(">>>>j_name="+j_name);
+        Job job=jobService.getJobByJ_nameD_name(j_name,d_name);
+        List<Emp> empList=new ArrayList<>();
+        if (null!=job){//有该职位
+            Job job1=jobService.getJob_EmpByJ_id(job);
+            if(null!=job1){//用户存在
+                empList=job1.getEmpList();//可能为null
+                System.out.println(">>>>>empList="+empList);
+            }
+        }
+        return empList;
     }
 
     @RequestMapping("toPage")
@@ -86,7 +103,7 @@ public class EmpController {
         return "empMain";
     }
     @RequestMapping("updateEmpPass")
-    public String updateEmpPass(String e_pass1,Emp emp)throws Exception{
+    public String updateEmpPass(String e_pass1,Emp emp,Model model)throws Exception{
         if (e_pass1.equals(emp.getE_pass())){
             Emp emp1=empService.getEmpByE_account(emp);
             System.out.println(emp1);
@@ -94,7 +111,8 @@ public class EmpController {
             empService.updateEmpPassByAccount(emp1);
             return "login";
         }else {
-            return "updatePassFailed";
+            model.addAttribute("rePassError","×两次密码不一致!");
+            return "updateEmpPass";
         }
     }
     @RequestMapping("empLogin")
@@ -154,6 +172,15 @@ public class EmpController {
         emp1.setJob(job);//改j_id
         empService.updateEmp(emp1);
         return queryEmpInfo(emp1,model);
+    }
+
+    @RequestMapping("queryEmpBaseInfo")
+    public String queryEmpBaseInfo(Emp emp,Model model)throws Exception{
+        Emp emp1=empService.getEmp_JobByE_id(emp);
+        model.addAttribute("emp",emp);
+        Job job=jobService.getJobByJ_id(emp1.getJob());
+        model.addAttribute(job);
+        return "queryEmpBaseInfo";
     }
 
 }

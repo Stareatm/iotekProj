@@ -32,11 +32,11 @@
         and d.d_name=#{1}
     </select>
     <select id="getJob_EmpByJ_id" resultMap="Job_Emp">
-        SELECT e.*,j.J_NAME
-        FROM T_EMP e,T_JOB j
-        WHERE e.J_ID=j.J_ID
-        AND j.J_ID=#{j_id}
-    </select>
+    SELECT e.*,j.J_NAME
+    FROM T_EMP e,T_JOB j
+    WHERE e.J_ID=j.J_ID
+    AND j.J_ID=#{j_id}
+</select>
 
     <select id="getJobByD_id" resultMap="Job_Dept">
           SELECT j.J_ID,J_NAME,d.D_ID,d.D_NAME

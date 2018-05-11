@@ -1,9 +1,8 @@
 package com.stareatm.controller;
 
-import com.stareatm.model.Dept;
-import com.stareatm.model.Job;
-import com.stareatm.model.Training;
+import com.stareatm.model.*;
 import com.stareatm.service.DeptService;
+import com.stareatm.service.EmpService;
 import com.stareatm.service.JobService;
 import com.stareatm.service.TrainingService;
 import org.springframework.stereotype.Controller;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -31,8 +31,9 @@ public class TrainingController {
     @Resource
     private DeptService deptService;
     @Resource
+    private EmpService empService;
+    @Resource
     private JobService jobService;
-
     @RequestMapping("showTraining")
     public String showTraining(Model model)throws Exception{
         List<Training> trainingList=trainingService.getAllTraining();
@@ -61,7 +62,18 @@ public class TrainingController {
         model.addAttribute("deptList",deptList);
         return "showTraining";
     }
-
+    @RequestMapping("queryTraining")
+    public String queryTraining(HttpSession session,Model model)throws Exception{
+        Emp emp= (Emp) session.getAttribute("emp");
+        Emp emp1=empService.getEmp_JobByE_id(emp);
+        Job job=jobService.getJobByJ_id(emp1.getJob());//获取job和dept
+        Training training=new Training();
+        training.setDept(job.getDept());//设置成该员工所在部门
+        List<Training> trainingList=trainingService.getTrainingByD_id(training);
+        model.addAttribute("trainingList",trainingList);
+        model.addAttribute("dept",job.getDept());
+        return "queryTraining";
+    }
     @RequestMapping("addTraining")
     public String addTraining(Dept dept,Training training,String beginTime,String endTime,Model model)throws Exception{
         String beginTime1=beginTime.substring(0,10)+" "+beginTime.substring(11,16);
@@ -106,7 +118,7 @@ public class TrainingController {
     public void checkEndTime(String beginTime, String endTime,HttpServletResponse response)throws Exception{
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/java;charset=utf-8");
-        String message=endTime.compareTo(beginTime)>0 ? "√":"结束时间需晚于开始时间";
+        String message=endTime.compareTo(beginTime)>0 ? "√":"×结束时间需晚于开始时间";
         response.getWriter().print(message);
     }
 }

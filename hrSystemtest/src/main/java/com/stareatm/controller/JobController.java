@@ -36,7 +36,8 @@ public class JobController {
             jobService.addJobByJ_name(job);
             return deptController.showDept(model);
         }
-        return "addJobFailed";
+        model.addAttribute("addJobError","该职位已存在,添加失败!");
+        return "adminError";
     }
     @RequestMapping("deleteJob")
     public String deleteJob(Job job,Model model)throws Exception{

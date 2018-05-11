@@ -57,7 +57,18 @@ public class DeptController {
         model.addAttribute("deptList",deptList);
         return "showDept";
     }
-
+    @RequestMapping("queryDept")
+    public String queryDept(Model model)throws Exception{
+        List<Dept> deptList=deptService.getAllDept();
+        model.addAttribute("deptList",deptList);
+        List<Job> jobList=new ArrayList<>();
+        if(deptList.size()!=0){
+            Dept dept=deptService.getDept_JobByD_name(deptList.get(0));
+            jobList=dept.getJobList();
+        }
+        model.addAttribute("jobList",jobList);
+        return "queryDept";
+    }
     @RequestMapping("addDept")
     public String addDept(Dept dept,Model model)throws Exception{
         Dept dept1=deptService.getDeptByD_name(dept);

@@ -105,6 +105,9 @@
                                 <c:if test="${resume.interview.i_status==1}">
                                     已接受面试
                                 </c:if>
+                                <c:if test="${resume.interview.i_status==2}">
+                                    已入职
+                                </c:if>
                             </c:if>
                             <c:if test="${null==resume.interview}">
                                 <form action="interviewController/toAddInterview">

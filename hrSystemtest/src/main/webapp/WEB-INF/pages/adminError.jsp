@@ -13,16 +13,22 @@
 <html>
 <head>
     <base href="<%=basePath%>"/>
-    <title></title>
+    <title>adminError</title>
+    <link rel="stylesheet" type="text/css" href="../../css/main.css">
+    <link rel="stylesheet" type="text/css" href="../../css/toMain.css">
+    <link rel="stylesheet" type="text/css" href="../../css/showUserInfo.css">
 </head>
 <body>
-    ${regularEmpError}
-    ${LeaveEmpError}
-    ${addTrainingError}
-    ${updateTrainingError}
-    ${addDeptError}
-    ${addSalaryError}<br>
-    <a href="empController/toPage?choose=adminMain">返回主页</a>
+    <div class="content">
+        ${regularEmpError}
+        ${LeaveEmpError}
+        ${addTrainingError}
+        ${updateTrainingError}
+        ${addDeptError}
+        ${addSalaryError}
+        ${addJobError}
+    </div>
+    <a href="empController/toPage?choose=adminMain" id="toMain">返回主页</a>
 </body>
 </html>
 

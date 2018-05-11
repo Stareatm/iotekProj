@@ -32,21 +32,19 @@ public class RewordPunishController {
     @RequestMapping("queryRP")
     public String queryRP(Emp emp, Model model)throws Exception{
         model.addAttribute("emp",emp);
-
         RewordPunish rewordPunish=new RewordPunish();
         rewordPunish.setEmp(emp);
         List<RewordPunish> rewordPunishList=rewordPunishService.getAllRewordPunishByE_id(rewordPunish);
         model.addAttribute("rewordPunishList",rewordPunishList);
-
         return "queryRP";
     }
 
     @RequestMapping("updateRP")
-    public String updateRP(RewordPunish rewordPunish,String rpTime,Emp emp,Model model)throws Exception{
-        String time=rpTime.substring(0,10)+" "+rpTime.substring(11,16);
-        rewordPunish.setRp_time(new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(time));
-        rewordPunish.setEmp(emp);
+    public String updateRP(RewordPunish rewordPunish,Emp emp,String rpTime,Model model)throws Exception{
+        /*String time=rpTime.substring(0,10)+" "+rpTime.substring(11,16);*/
+        rewordPunish.setRp_time(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(rpTime));
         rewordPunishService.updateRP(rewordPunish);
+        Emp emp1=empService.getEmp_JobByE_id(emp);
         return queryRP(emp,model);
     }
 
@@ -68,6 +66,7 @@ public class RewordPunishController {
 
     @RequestMapping("addRP1")
     public String addRP1(RewordPunish rewordPunish, String rpTime, Salary salary,Model model)throws Exception{
+        System.out.println(">>>>3333>>sal="+salary);
         Salary salary1=salaryService.getSalaryByS_id(salary);//薪资
         String time=rpTime.substring(0,10)+" "+rpTime.substring(11,16);
         rewordPunish.setRp_time(new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(time));

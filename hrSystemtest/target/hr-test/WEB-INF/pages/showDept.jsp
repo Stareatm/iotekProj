@@ -81,13 +81,16 @@
                 $(deleteJob).append("<input type='hidden' name='j_id' value="+j_id+">"+
                     "<input type='submit' value='删除'>")
             });
+          /*  function del(var status){
+                var=$()
+            }*/
         })
     </script>
 </head>
 <body>
     <div class="content">
         <c:if test="${deptList.size()==0}">
-            <div>您还没有创建任何部门,点击下方添加吧!</div>
+            <div>您还没有创建任何部门,点击下方＋添加吧!</div>
         </c:if>
         <c:if test="${deptList.size()!=0}"><%--有部门--%>
             <table border="1" cellspacing="0" cellpadding="0">
@@ -96,7 +99,7 @@
                     <th>职位名称</th>
                     <th>员工</th>
                 </tr>
-                <c:forEach items="${deptList}" var="dept">
+                <c:forEach items="${deptList}" var="dept" varStatus="status">
                     <tr>
                         <td>
                             <div class="dName1">
@@ -112,18 +115,23 @@
                                     </form>
                                 </div>
                             </c:if>
+                           <%-- <c:if test="${dept.jobList.size()!=0}">
+                                <div id="${status.index+1}">
+                                    <input type="button" id="" value="删除">
+                                </div>
+                            </c:if>--%>
                         </td>
                         <td>
                             <c:forEach items="${dept.jobList}" var="job" varStatus="status">
                                 <c:if test="${null!=job.empList}">
-                                    <a href="#" >${job.j_name}</a>
+                                    ${job.j_name}<br>
                                 </c:if>
                                 <c:if test="${null==job.empList}">
                                     <div class="jName">
-                                        <a href="#" >${job.j_name}</a>
+                                        ${job.j_name}
                                     </div>
                                     <div class="j_id">
-                                            ${job.j_id}
+                                        ${job.j_id}
                                     </div>
                                     <div class="minus2">
                                         －
